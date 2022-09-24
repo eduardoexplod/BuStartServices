@@ -28,19 +28,22 @@ public class UserController {
 	@Autowired
 	private UserRoleRepository userRoleRepository;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public UserDO register(@RequestBody UserBO userBO) {
 		UserDO userDO = null;
 		userDO = new ObjectMapper().convertValue(userBO, UserDO.class);
-		//userDO.setPassword(passwordEncoder.encode(userBO.getPassword()));
+		userDO.setPassword(passwordEncoder.encode(userBO.getPassword()));
 		userDO.setRoles(Collections.singletonList(userRoleRepository.findByRoleNameContaining("USER")));
 		
 		Optional<UserDO> optUserDO= null;
 		optUserDO = userRepository.findByUserNameOrEmail(userBO.getUserName(), userBO.getEmail());
 		if(!optUserDO.isPresent()) {
 			userRepository.save(userDO);
+			return userDO;
 		}
 		
 		throw new RuntimeException("The username already exist");
