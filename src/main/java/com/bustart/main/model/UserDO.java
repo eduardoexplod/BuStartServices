@@ -36,10 +36,10 @@ public class UserDO {
 	private String email;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "DD_USER_ROLE", joinColumns = @JoinColumn(name = "SK_USER_ID", referencedColumnName = "PK_USER_ID")
-	, inverseJoinColumns = @JoinColumn(name = "SK_ROLE_ID", referencedColumnName = "PK_ROLE_ID"))
+	@JoinTable(name = "DD_USER_ROLE", joinColumns = @JoinColumn(name = "FK_USER_ID", referencedColumnName = "PK_USER_ID")
+	, inverseJoinColumns = @JoinColumn(name = "FK_ROLE_ID", referencedColumnName = "PK_ROLE_ID"))
 	private List<RoleDO> roles;
-
+	
 	/**
 	 * @return the id
 	 */

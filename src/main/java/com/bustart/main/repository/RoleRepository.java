@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.bustart.main.model.RoleDO;
 
 @Repository
-public interface UserRoleRepository extends JpaRepository<RoleDO, Long>{
+public interface RoleRepository extends JpaRepository<RoleDO, Long>{
 
 	RoleDO findByRoleNameContaining(String roleName);
 
