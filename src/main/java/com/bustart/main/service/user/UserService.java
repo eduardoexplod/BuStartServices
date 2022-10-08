@@ -4,13 +4,18 @@
 package com.bustart.main.service.user;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.bustart.main.bo.BaseResponseBO;
+import com.bustart.main.bo.BusinessBO;
 import com.bustart.main.bo.UserBO;
 import com.bustart.main.model.UserDO;
 import com.bustart.main.repository.RoleRepository;
@@ -50,5 +55,17 @@ public class UserService{
 			return userDO;
 		}
 		throw new RuntimeException("The username already exist");
+	}
+	
+	/**
+	 * @author Slam245
+	 * @method 
+	 *
+	 */
+	@SuppressWarnings("rawtypes")
+	public ResponseEntity<BaseResponseBO> getBusinessByUser(String userName) {
+		BaseResponseBO<List<BusinessBO>> baseResponseBO = new BaseResponseBO<List<BusinessBO>>();
+		
+		return new ResponseEntity<>(baseResponseBO, HttpStatus.OK);
 	}
 }
