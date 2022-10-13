@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bustart.main.bo.BaseRequestBO;
 import com.bustart.main.bo.BaseResponseBO;
 import com.bustart.main.bo.UserBO;
+import com.bustart.main.exception.ServiceException;
 import com.bustart.main.model.UserDO;
 import com.bustart.main.service.user.UserService;
 
@@ -43,11 +44,12 @@ public class UserController {
 	 * 
 	 * @param userName String
 	 * @return
+	 * @throws ServiceException 
 	 */
 	@SuppressWarnings("rawtypes")
-	@GetMapping
+	@PostMapping
 	@RequestMapping(value = "/getBusinessByUser", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<BaseResponseBO> getBusinessByUser(@Valid @RequestBody BaseRequestBO<String> request) {
-		return userService.getBusinessByUser(request.getBusinessRequest());
+	public ResponseEntity<BaseResponseBO> getBusinessByUser(@Valid @RequestBody String userName) throws ServiceException {
+		return userService.getBusinessByUser(userName);
 	}
 }
