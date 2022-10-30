@@ -4,13 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 
 
 /**
  * The Class AuditBase.
  *
  */
+@MappedSuperclass
 public class AuditBaseDO<T extends Serializable> {
 
 	/** The status code. */
@@ -18,7 +21,8 @@ public class AuditBaseDO<T extends Serializable> {
 	private Boolean statusCode;
 
 	/** The creator user name. */
-	@Column(name = "FK_USER_ID_CREATOR",  nullable = true)
+	@ManyToOne
+	@JoinColumn(name = "FK_USER_ID_CREATOR",  nullable = true)
 	protected UserDO creatorUserDO;
 
 	/** The creation date. */
@@ -26,8 +30,9 @@ public class AuditBaseDO<T extends Serializable> {
 	protected Date creationDate;
 	
 	/** The last modified user name. */
-	@Column(name = "FK_USER_ID_LAST_MODIFIER", nullable = true)
-	protected String lastModifiedUserDO;
+	@ManyToOne
+	@JoinColumn(name = "FK_USER_ID_LAST_MODIFIER",  nullable = true)
+	protected UserDO lastModifiedUserDO;
 
 	/** The last modified date. */
 	@Column(name = "DD_MODIFICATION_DATE", nullable = true)
@@ -78,14 +83,14 @@ public class AuditBaseDO<T extends Serializable> {
 	/**
 	 * @return the lastModifiedUserDO
 	 */
-	public String getLastModifiedUserDO() {
+	public UserDO getLastModifiedUserDO() {
 		return lastModifiedUserDO;
 	}
 
 	/**
 	 * @param lastModifiedUserDO the lastModifiedUserDO to set
 	 */
-	public void setLastModifiedUserDO(String lastModifiedUserDO) {
+	public void setLastModifiedUserDO(UserDO lastModifiedUserDO) {
 		this.lastModifiedUserDO = lastModifiedUserDO;
 	}
 

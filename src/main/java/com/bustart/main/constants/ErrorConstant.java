@@ -30,9 +30,35 @@ public class ErrorConstant {
 	/** The Constant ERROR_502. */
 	public static final int ERROR_502 = 502;
 	
+	/** The Constant ERROR_1. */
+	public static final Long SYSTEM_ERROR_1 = 1L;
+	/** The Constant ERROR_KEY_USER_EXIST. */
+	public static final String ERROR_KEY_USER_EXIST = "KEY_USER_EXIST";
+	/** The Constant MSG_KEY_USER_EXIST. */
+	public static final String MSG_KEY_USER_EXIST = "The user exist in DB.";
+	
+	/** The Constant ERROR_2. */
+	public static final Long SYSTEM_ERROR_2 = 2L;
 	/** The Constant ERROR_KEY_USER_NOT_EXIST. */
 	public static final String ERROR_KEY_USER_NOT_EXIST = "KEY_USER_NOT_EXIST";
+	/** The Constant MSG_KEY_USER_EXIST. */
+	public static final String MSG_KEY_USER_NOT_EXIST = "The user not exist in DB.";
 	
 	
+	/** The Constant ERROR_2. */
+	public static final Long SYSTEM_ERROR_99999 = 99999L;
+	/** The Constant MSG_KEY_USER_EXIST. */
+	public static final String MSG_KEY_INPUT_ERROR = "Data entry error in backend service: ";
+	
+	/** The Constant VAL_USERNAME_REQUIRED */
+	public static final String ERROR_VALIDATION_USERNAME_REQUIRED = "VAL_USERNAME_REQUIRED";
+	/** The Constant VAL_EMAIL_REQUIRED */
+	public static final String ERROR_VALIDATION_EMAIL_REQUIRED = "ERROR_VALIDATION_EMAIL_REQUIRED";
+	/** The Constant VAL_EMAIL_FORMAT_REQUIRED */
+	public static final String ERROR_VALIDATION_EMAIL_FORMAT_REQUIRED = "ERROR_VALIDATION_EMAIL_FORMAT_REQUIRED";
+	/** The Constant VAL_PASSWORD_REQUIRED */
+	public static final String ERROR_VALIDATION_PASSWORD_REQUIRED = "ERROR_VALIDATION_PASSWORD_REQUIRED";
+	/** The Constant VAL_PASSWORD_FORMAT */
+	public static final String ERROR_VALIDATION_PASSWORD_FORMAT = "ERROR_VALIDATION_PASSWORD_FORMAT";
 }
 

@@ -2,8 +2,10 @@ package com.bustart.main.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,11 +28,11 @@ public class UserBusinessDO extends AuditBaseDO<Long> implements Serializable{
 	@Column(name = "PK_USER_BUSINESS_ID")
 	private Long id;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = (CascadeType.PERSIST))
 	@JoinColumn(name = "FK_USER_ID")
 	private UserDO userDO;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = (CascadeType.PERSIST))
 	@JoinColumn(name = "FK_BUSINESS_ID")
 	private BusinessDO businessDO;
 
