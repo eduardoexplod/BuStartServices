@@ -1,16 +1,12 @@
 package com.bustart.main.model;
 
-import java.util.List;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,26 +15,26 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "MM_USER")
-public class UserDO {
+public class UserDO extends AuditBaseDO<Long> implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8344863284896415021L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PK_USER_ID")
 	private Long id;
 
-	@Column(name = "DS_USER")
+	@Column(name = "DS_USER", nullable = false)
 	private String userName;
 
-	@Column(name = "DS_PASSWORD")
+	@Column(name = "DS_PASSWORD", nullable = false)
 	private String password;
 	
-	@Column(name = "DS_EMAIL")
+	@Column(name = "DS_EMAIL", nullable = false)
 	private String email;
-
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "DD_USER_ROLE", joinColumns = @JoinColumn(name = "FK_USER_ID", referencedColumnName = "PK_USER_ID")
-	, inverseJoinColumns = @JoinColumn(name = "FK_ROLE_ID", referencedColumnName = "PK_ROLE_ID"))
-	private List<RoleDO> roles;
 	
 	/**
 	 * @return the id
@@ -94,22 +90,5 @@ public class UserDO {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	/**
-	 * @return the roles
-	 */
-	public List<RoleDO> getRoles() {
-		return roles;
-	}
-
-	/**
-	 * @param roles the roles to set
-	 */
-	public void setRoles(List<RoleDO> roles) {
-		this.roles = roles;
-	}
-
-	
-
+	}	
 }

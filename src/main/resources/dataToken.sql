@@ -107,5 +107,8 @@ VALUES ('lalo', '$2a$12$im3Q8AInlVbNbPVlPzxzROTR00W0UydJ5ERPzGxCPhzkd8GYwzH9.',
 
 -- ##########################################################--
 -- USER ROLES
-INSERT INTO cs_role (ds_role, ds_description) VALUES ('ROLE_ADMIN', 'ADMIN - All Privileges');
-INSERT INTO cs_role (ds_role, ds_description) VALUES ('ROLE_USER', 'USER - Limited PRIVILEGES');
+INSERT INTO cs_role (ds_role, ds_description, db_status_code, dd_creation_date, fk_user_id_creator, dd_modification_date, fk_user_id_last_modifier) 
+VALUES ('ROLE_ADMIN', 'ADMIN - All Privileges', 1, NOW(), NULL, NULL, NULL);
+
+INSERT INTO cs_role (ds_role, ds_description, db_status_code, dd_creation_date, fk_user_id_creator, dd_modification_date, fk_user_id_last_modifier) 
+VALUES ('ROLE_USER', 'USER - Limited PRIVILEGES', 1, NOW(), NULL, NULL, NULL);

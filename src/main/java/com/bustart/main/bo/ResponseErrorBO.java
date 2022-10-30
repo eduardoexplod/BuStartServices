@@ -12,6 +12,19 @@ public class ResponseErrorBO {
 	public ResponseErrorBO() {
 	}
 
+	/**
+	 * @author Slam245
+	 * @method ResponseErrorBO
+	 * @param code       Long
+	 * @param identifier String
+	 * @param message    String
+	 */
+	public ResponseErrorBO(Long code, String identifier, String message) {
+		this.code = code;
+		this.identifier = identifier;
+		this.message = message;
+	}
+
 	private Long code;
 	private String identifier;
 	private String message;

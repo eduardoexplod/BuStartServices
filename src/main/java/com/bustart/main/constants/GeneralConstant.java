@@ -14,5 +14,10 @@ public class GeneralConstant {
 	/** The Constant EMPTY_STRING. */
 	public static final String EMPTY_STRING = "";
 	
+	/** The Constant EMPTY_STRING. */
+	public static final String HYPHEN_STRING = "-";
+	
+	/** The Constant GENERIC_STRING_ROLE. */
+	public static final String GENERIC_STRING_ROLE = "USER";
 	
 }

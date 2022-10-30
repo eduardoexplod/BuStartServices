@@ -1,7 +1,11 @@
 package com.bustart.main.model;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,18 +19,23 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "DD_USER_ROLE")
-public class UserRoleDO {
+public class UserRoleDO extends AuditBaseDO<Long> implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3091227373696978356L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PK_USER_ROLE_ID")
 	private Long id;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = (CascadeType.PERSIST))
 	@JoinColumn(name = "FK_USER_ID")
 	private UserDO userDO;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = (CascadeType.PERSIST))
 	@JoinColumn(name = "FK_ROLE_ID")
 	private RoleDO roleDO;
 

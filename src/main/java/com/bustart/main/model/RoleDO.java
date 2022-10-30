@@ -1,5 +1,7 @@
 package com.bustart.main.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,17 +15,22 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "CS_ROLE")
-public class RoleDO {
+public class RoleDO  extends AuditBaseDO<Long> implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3753052979880565838L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PK_ROLE_ID")
 	private Long id;
 
-	@Column(name = "DS_ROLE")
+	@Column(name = "DS_ROLE", nullable = false)
 	private String roleName;
 
-	@Column(name = "DS_DESCRIPTION")
+	@Column(name = "DS_DESCRIPTION", nullable = false)
 	private String description;
 
 	/**

@@ -24,10 +24,10 @@ public class BusinessDO extends AuditBaseDO<Long> implements Serializable{
 	@Column(name = "PK_BUSINESS_ID")
 	private Long id;
 
-	@Column(name = "DS_BUSINESS")
+	@Column(name = "DS_BUSINESS", nullable = false)
 	private String roleName;
 
-	@Column(name = "DS_DESCRIPTION")
+	@Column(name = "DS_DESCRIPTION", nullable = false)
 	private String description;
 	
 
