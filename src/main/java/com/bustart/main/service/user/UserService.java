@@ -27,9 +27,11 @@ import com.bustart.main.constants.NumberConstant;
 import com.bustart.main.model.RoleDO;
 import com.bustart.main.model.UserBusinessDO;
 import com.bustart.main.model.UserDO;
+import com.bustart.main.model.UserDetailDO;
 import com.bustart.main.model.UserRoleDO;
 import com.bustart.main.repository.RoleRepository;
 import com.bustart.main.repository.UserBusinessRepository;
+import com.bustart.main.repository.UserDetailRepository;
 import com.bustart.main.repository.UserRepository;
 import com.bustart.main.repository.UserRoleRepository;
 
@@ -46,7 +48,10 @@ public class UserService {
 
 	@Autowired
 	private UserRoleRepository userRoleRepository;
-	
+
+	@Autowired
+	private UserDetailRepository userDetailRepository;
+
 	@Autowired
 	private RoleRepository roleRepository;
 
@@ -74,8 +79,8 @@ public class UserService {
 		logger.info("UserService - Method createUser");
 		BaseResponseBO<UserOutputBO> baseResponseBO = new BaseResponseBO<UserOutputBO>();
 		List<ResponseErrorBO> listErrors = new ArrayList<ResponseErrorBO>();
-		UserOutputBO userOutputBO  = null;
-		
+		UserOutputBO userOutputBO = null;
+
 		logger.info(
 				"createUser: Search the username in DB - " + userInputBO.getUserName() + ", " + userInputBO.getEmail());
 		Optional<UserDO> optUserDO = null;
@@ -85,7 +90,7 @@ public class UserService {
 			ResponseErrorBO responseErrorBO = new ResponseErrorBO(ErrorConstant.SYSTEM_ERROR_1,
 					ErrorConstant.ERROR_KEY_USER_EXIST, ErrorConstant.MSG_KEY_USER_EXIST);
 			listErrors.add(responseErrorBO);
-		}else {
+		} else {
 			logger.info("createUser - Search creator username ");
 			UserDO userDOCreator = null;
 			userDOCreator = getUserDetails(userInputBO.getCreatorUserName());
@@ -103,11 +108,12 @@ public class UserService {
 			userRepository.save(userDO);
 			userRepository.flush();
 			logger.info("createUser - New user created");
-			
+
 			UserDO newUserDO = null;
 			newUserDO = getUserDetails(userInputBO.getUserName());
 			listErrors = saveUserRolDO(newUserDO, userDOCreator, listErrors);
-			
+			listErrors = saveUserDetailsDO(userInputBO, newUserDO, userDOCreator, listErrors);
+
 			logger.info("createUser - Fill details of new user");
 			userOutputBO = new UserOutputBO();
 			userOutputBO.setUserId(newUserDO.getId());
@@ -119,6 +125,13 @@ public class UserService {
 			List<String> listRoles = null;
 			listRoles = getUserRoles(newUserDO);
 			userOutputBO.setRoles(listRoles);
+			UserDetailDO userDetailDO = null;
+			userDetailDO = userDetailRepository.findByUserDO(newUserDO);
+			userOutputBO.setFirstName(userDetailDO.getFirstName());
+			userOutputBO.setLastName(userDetailDO.getLastName());
+			userOutputBO.setSecondLastName(userDetailDO.getSecondLastName());
+			userOutputBO.setPhoneNumber(userDetailDO.getPhoneNumber());
+			userOutputBO.setHasWhatsApp(userDetailDO.isHasWhatsApp());
 		}
 		baseResponseBO.setData(listErrors.size() > 0 ? null : userOutputBO);
 		baseResponseBO.setErrors(listErrors);
@@ -140,8 +153,8 @@ public class UserService {
 		logger.info("UserService - Method getBusinessByUser");
 		BaseResponseBO<List<BusinessBO>> baseResponseBO = new BaseResponseBO<List<BusinessBO>>();
 		List<ResponseErrorBO> listErrors = new ArrayList<ResponseErrorBO>();
-		List<BusinessBO> listBusinessBO = null;	
-		
+		List<BusinessBO> listBusinessBO = null;
+
 		UserDO userDO = null;
 		userDO = getUserDetails(userName);
 		if (null != userDO) {
@@ -158,7 +171,7 @@ public class UserService {
 				businessBO.setUserCreated(userBusinessDO.getCreatorUserDO().getUserName());
 				listBusinessBO.add(businessBO);
 			}
-		}else {
+		} else {
 			logger.severe("getBusinessByUser - The user not exist");
 			ResponseErrorBO responseErrorBO = new ResponseErrorBO(ErrorConstant.SYSTEM_ERROR_2,
 					ErrorConstant.ERROR_KEY_USER_NOT_EXIST, ErrorConstant.MSG_KEY_USER_NOT_EXIST);
@@ -171,7 +184,7 @@ public class UserService {
 
 		return new ResponseEntity<>(baseResponseBO, HttpStatus.OK);
 	}
-	
+
 	/**
 	 * @author Slam245
 	 * @method getUserDetails
@@ -182,7 +195,7 @@ public class UserService {
 	private UserDO getUserDetails(String userName) {
 		logger.info("createUser - Get user details: " + userName);
 		UserDO userDO = null;
-		if(null != userName) {
+		if (null != userName) {
 			Optional<UserDO> optUserDO = null;
 			optUserDO = userRepository.findByUserName(userName);
 			logger.info(optUserDO.toString());
@@ -193,39 +206,41 @@ public class UserService {
 		}
 		return userDO;
 	}
-	
+
 	/**
 	 * @author Slam245
 	 * @method saveUserRolDO
-	 * @param newUserDO UserDO
+	 * @param newUserDO     UserDO
 	 * @param userDOCreator UserDO
-	 * @param listErrors List<ResponseErrorBO>
+	 * @param listErrors    List<ResponseErrorBO>
 	 * @return List<ResponseErrorBO>
 	 *
 	 */
-	private List<ResponseErrorBO> saveUserRolDO(UserDO newUserDO,UserDO userDOCreator, List<ResponseErrorBO> listErrors) {
+	private List<ResponseErrorBO> saveUserRolDO(UserDO newUserDO, UserDO userDOCreator,
+			List<ResponseErrorBO> listErrors) {
 		logger.info("createUser - Save the roles for the new user");
-		List<ResponseErrorBO> newListErrors = new ArrayList<ResponseErrorBO>();;
-		newListErrors.addAll(listErrors);	
-		if(null != newUserDO) {
+		List<ResponseErrorBO> newListErrors = new ArrayList<ResponseErrorBO>();
+		;
+		newListErrors.addAll(listErrors);
+		if (null != newUserDO) {
 			logger.info("createUser - Search roles");
 			List<RoleDO> listRoles = new ArrayList<RoleDO>();
 			listRoles = roleRepository.findByRoleNameContaining(GeneralConstant.GENERIC_STRING_ROLE);
-			for(RoleDO roleDO: listRoles) {
-		 		UserRoleDO userRoleDO = new UserRoleDO();
-		 		userRoleDO.setRoleDO(roleDO);
-		 		userRoleDO.setUserDO(newUserDO);
-		 		userRoleDO.setStatusCode(Boolean.TRUE);
-		 		userRoleDO.setCreationDate(new Date());
-		 		userRoleDO.setCreatorUserDO(userDOCreator);
-		 		userRoleRepository.save(userRoleDO);
-		 		userRoleRepository.flush();	
-		 		logger.info("createUser - Save Roles OK");
+			for (RoleDO roleDO : listRoles) {
+				UserRoleDO userRoleDO = new UserRoleDO();
+				userRoleDO.setRoleDO(roleDO);
+				userRoleDO.setUserDO(newUserDO);
+				userRoleDO.setStatusCode(Boolean.TRUE);
+				userRoleDO.setCreationDate(new Date());
+				userRoleDO.setCreatorUserDO(userDOCreator);
+				userRoleRepository.save(userRoleDO);
+				userRoleRepository.flush();
+				logger.info("createUser - Save Roles OK");
 			}
 		}
 		return newListErrors;
 	}
-	
+
 	/**
 	 * @author Slam245
 	 * @method getUserRoles
@@ -236,7 +251,7 @@ public class UserService {
 	private List<String> getUserRoles(UserDO userDO) {
 		logger.info("createUser - Get user roles: " + userDO.getUserName());
 		List<String> listRoles = new ArrayList<String>();
-		if(null != userDO) {
+		if (null != userDO) {
 			List<UserRoleDO> listUserRoleDO = null;
 			logger.info("createUser: Extract user roles");
 			listUserRoleDO = userRoleRepository.findByUserDO(userDO);
@@ -245,5 +260,40 @@ public class UserService {
 			}
 		}
 		return listRoles;
+	}
+
+	/**
+	 * @author Slam245
+	 * @method saveUserDetailsDO
+	 * @param userInputBO   UserInputBO
+	 * @param newUserDO     UserDO
+	 * @param userDOCreator UserDO
+	 * @param listErrors    List<ResponseErrorBO>
+	 * @return List<ResponseErrorBO>
+	 *
+	 */
+	private List<ResponseErrorBO> saveUserDetailsDO(UserInputBO userInputBO, UserDO newUserDO, UserDO userDOCreator,
+			List<ResponseErrorBO> listErrors) {
+		logger.info("createUser - Save details for the new user");
+		List<ResponseErrorBO> newListErrors = new ArrayList<ResponseErrorBO>();
+		;
+		newListErrors.addAll(listErrors);
+		if (null != newUserDO) {
+			logger.info("createUser - Fill details of the user");
+			UserDetailDO userDetailDO = new UserDetailDO();
+			userDetailDO.setUserDO(newUserDO);
+			userDetailDO.setFirstName(userInputBO.getFirstName());
+			userDetailDO.setLastName(userInputBO.getLastName());
+			userDetailDO.setSecondLastName(userInputBO.getSecondLastName());
+			userDetailDO.setPhoneNumber(userInputBO.getPhoneNumber());
+			userDetailDO.setHasWhatsApp(userInputBO.isHasWhatsApp());
+			userDetailDO.setStatusCode(Boolean.TRUE);
+			userDetailDO.setCreationDate(new Date());
+			userDetailDO.setCreatorUserDO(userDOCreator);
+			userDetailRepository.save(userDetailDO);
+			userDetailRepository.flush();
+			logger.info("createUser - Save record OK");
+		}
+		return newListErrors;
 	}
 }
