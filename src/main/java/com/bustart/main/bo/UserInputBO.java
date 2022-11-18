@@ -20,35 +20,35 @@ public class UserInputBO {
 	public UserInputBO() {
 	}
 
-	@NotNull(message = ErrorConstant.ERROR_VALIDATION_USERNAME_REQUIRED)
-	@NotEmpty (message = ErrorConstant.ERROR_VALIDATION_USERNAME_REQUIRED)
+	@NotNull(message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
 	private String userName;
 	
-	@NotNull(message = ErrorConstant.ERROR_VALIDATION_EMAIL_REQUIRED)
-	@NotEmpty (message = ErrorConstant.ERROR_VALIDATION_EMAIL_REQUIRED)
-	@Email (message = ErrorConstant.ERROR_VALIDATION_EMAIL_FORMAT_REQUIRED)
+	@NotNull(message = ErrorConstant.ERROR_VAL_EMAIL_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_EMAIL_REQUIRED)
+	@Email (message = ErrorConstant.ERROR_VAL_EMAIL_FORMAT_REQUIRED)
 	private String email;
 	
-	@NotNull(message = ErrorConstant.ERROR_VALIDATION_PASSWORD_REQUIRED)
-	@NotEmpty (message = ErrorConstant.ERROR_VALIDATION_PASSWORD_REQUIRED)
-	@Pattern (regexp= PatternConstant.PATTERN_PASSWORD, message = ErrorConstant.ERROR_VALIDATION_PASSWORD_FORMAT)
+	@NotNull(message = ErrorConstant.ERROR_VAL_PASSWORD_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_PASSWORD_REQUIRED)
+	@Pattern (regexp= PatternConstant.PATTERN_PASSWORD, message = ErrorConstant.ERROR_VAL_PASSWORD_FORMAT)
 	private String password;
 	
-	@NotNull(message = ErrorConstant.ERROR_VALIDATION_FIRST_NAME_REQUIRED)
-	@NotEmpty (message = ErrorConstant.ERROR_VALIDATION_FIRST_NAME_REQUIRED)
+	@NotNull(message = ErrorConstant.ERROR_VAL_FIRST_NAME_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_FIRST_NAME_REQUIRED)
 	private String firstName;
 
-	@NotNull(message = ErrorConstant.ERROR_VALIDATION_LAST_NAME_REQUIRED)
-	@NotEmpty (message = ErrorConstant.ERROR_VALIDATION_LAST_NAME_REQUIRED)
+	@NotNull(message = ErrorConstant.ERROR_VAL_LAST_NAME_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_LAST_NAME_REQUIRED)
 	private String lastName;
 	
 	private String secondLastName;
 	
-	@NotNull(message = ErrorConstant.ERROR_VALIDATION_PHONE_NUMBER_REQUIRED)
-	@NotEmpty (message = ErrorConstant.ERROR_VALIDATION_PHONE_NUMBER_REQUIRED)
+	@NotNull(message = ErrorConstant.ERROR_VAL_PHONE_NUMBER_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_PHONE_NUMBER_REQUIRED)
 	private String phoneNumber;
 	
-	@NotNull(message = ErrorConstant.ERROR_VALIDATION_HAS_WHATSAPP_REQUIRED)
+	@NotNull(message = ErrorConstant.ERROR_VAL_HAS_WHATSAPP_REQUIRED)
 	private boolean hasWhatsApp;
 	
 	private String creatorUserName;

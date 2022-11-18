@@ -41,32 +41,49 @@ public class ErrorConstant {
 	public static final Long SYSTEM_ERROR_2 = 2L;
 	/** The Constant ERROR_KEY_USER_NOT_EXIST. */
 	public static final String ERROR_KEY_USER_NOT_EXIST = "KEY_USER_NOT_EXIST";
-	/** The Constant MSG_KEY_USER_EXIST. */
+	/** The Constant MSG_KEY_USER_NOT_EXIST. */
 	public static final String MSG_KEY_USER_NOT_EXIST = "The user not exist in DB.";
 	
-	
-	/** The Constant ERROR_2. */
-	public static final Long SYSTEM_ERROR_99999 = 99999L;
+	/** The Constant ERROR_3. */
+	public static final Long SYSTEM_ERROR_3 = 3L;
+	/** The Constant ERROR_KEY_BUSINESS_EXIST. */
+	public static final String ERROR_KEY_BUSINESS_EXIST = "KEY_BUSINESS_EXIST";
 	/** The Constant MSG_KEY_USER_EXIST. */
+	public static final String MSG_KEY_BUSINESS_EXIST = "The business exist in DB.";
+	
+	/** The Constant ERROR_4. */
+	public static final Long SYSTEM_ERROR_4 = 4L;
+	/** The Constant ERROR_KEY_BUSINESS_NOT_EXIST. */
+	public static final String ERROR_KEY_BUSINESS_NOT_EXIST = "KEY_BUSINESS_NOT_EXIST";
+	/** The Constant MSG_KEY_USER_NOT_EXIST. */
+	public static final String MSG_KEY_BUSINESS_NOT_EXIST = "The business not exist in DB.";
+	
+	/** The Constant SYSTEM_ERROR_99999. */
+	public static final Long SYSTEM_ERROR_99999 = 99999L;
+	/** The Constant MSG_KEY_INPUT_ERROR. */
 	public static final String MSG_KEY_INPUT_ERROR = "Data entry error in backend service: ";
 	
-	/** The Constant VAL_USERNAME_REQUIRED */
-	public static final String ERROR_VALIDATION_USERNAME_REQUIRED = "VAL_USERNAME_REQUIRED";
-	/** The Constant VAL_EMAIL_REQUIRED */
-	public static final String ERROR_VALIDATION_EMAIL_REQUIRED = "ERROR_VALIDATION_EMAIL_REQUIRED";
-	/** The Constant VAL_EMAIL_FORMAT_REQUIRED */
-	public static final String ERROR_VALIDATION_EMAIL_FORMAT_REQUIRED = "ERROR_VALIDATION_EMAIL_FORMAT_REQUIRED";
-	/** The Constant VAL_PASSWORD_REQUIRED */
-	public static final String ERROR_VALIDATION_PASSWORD_REQUIRED = "ERROR_VALIDATION_PASSWORD_REQUIRED";
-	/** The Constant VAL_PASSWORD_FORMAT */
-	public static final String ERROR_VALIDATION_PASSWORD_FORMAT = "ERROR_VALIDATION_PASSWORD_FORMAT";
-	/** The Constant ERROR_VALIDATION_FIRST_NAME_REQUIRED */
-	public static final String ERROR_VALIDATION_FIRST_NAME_REQUIRED = "ERROR_VALIDATION_FIRST_NAME_REQUIRED";
-	/** The Constant ERROR_VALIDATION_LAST_NAME_REQUIRED */
-	public static final String ERROR_VALIDATION_LAST_NAME_REQUIRED = "ERROR_VALIDATION_LAST_NAME_REQUIRED";
-	/** The Constant ERROR_VALIDATION_PHONE_NUMBER_REQUIRED */
-	public static final String ERROR_VALIDATION_PHONE_NUMBER_REQUIRED = "ERROR_VALIDATION_PHONE_NUMBER_REQUIRED";
-	/** The Constant ERROR_VALIDATION_HAS_WHATSAPP_REQUIRED */
-	public static final String ERROR_VALIDATION_HAS_WHATSAPP_REQUIRED = "ERROR_VALIDATION_HAS_WHATSAPP_REQUIRED";
+	/** The Constant ERROR_VAL_USERNAME_REQUIRED */
+	public static final String ERROR_VAL_USERNAME_REQUIRED = "ERROR_VAL_USERNAME_REQUIRED";
+	/** The Constant ERROR_VAL_EMAIL_REQUIRED */
+	public static final String ERROR_VAL_EMAIL_REQUIRED = "ERROR_VAL_EMAIL_REQUIRED";
+	/** The Constant ERROR_VAL_EMAIL_FORMAT_REQUIRED */
+	public static final String ERROR_VAL_EMAIL_FORMAT_REQUIRED = "ERROR_VAL_EMAIL_FORMAT_REQUIRED";
+	/** The Constant ERROR_VAL_PASSWORD_REQUIRED */
+	public static final String ERROR_VAL_PASSWORD_REQUIRED = "ERROR_VAL_PASSWORD_REQUIRED";
+	/** The Constant ERROR_VAL_PASSWORD_FORMAT */
+	public static final String ERROR_VAL_PASSWORD_FORMAT = "ERROR_VAL_PASSWORD_FORMAT";	
+	/** The Constant ERROR_VAL_FIRST_NAME_REQUIRED */
+	public static final String ERROR_VAL_FIRST_NAME_REQUIRED = "ERROR_VAL_FIRST_NAME_REQUIRED";
+	/** The Constant ERROR_VAL_LAST_NAME_REQUIRED */
+	public static final String ERROR_VAL_LAST_NAME_REQUIRED = "ERROR_VAL_LAST_NAME_REQUIRED";
+	/** The Constant ERROR_VAL_PHONE_NUMBER_REQUIRED */
+	public static final String ERROR_VAL_PHONE_NUMBER_REQUIRED = "ERROR_VAL_PHONE_NUMBER_REQUIRED";
+	/** The Constant ERROR_VAL_HAS_WHATSAPP_REQUIRED */
+	public static final String ERROR_VAL_HAS_WHATSAPP_REQUIRED = "ERROR_VAL_HAS_WHATSAPP_REQUIRED";
+	/** The Constant ERROR_VAL_BUSINESS_REQUIRED */
+	public static final String ERROR_VAL_BUSINESS_REQUIRED = "ERROR_VAL_BUSINESS_REQUIRED";
+	/** The Constant ERROR_VAL_BUSINESS_DESCRIPTION_REQUIRED */
+	public static final String ERROR_VAL_BUSINESS_DESCRIPTION_REQUIRED = "ERROR_VAL_BUSINESS_DESCRIPTION_REQUIRED";
 }
 

@@ -60,6 +60,9 @@ public class UserService {
 
 	@Autowired
 	private UserBusinessRepository userBusinessRepository;
+	
+	@Autowired
+	private GeneralService generalService;
 
 	/**
 	 * Implement Logger
@@ -93,7 +96,7 @@ public class UserService {
 		} else {
 			logger.info("createUser - Search creator username ");
 			UserDO userDOCreator = null;
-			userDOCreator = getUserDetails(userInputBO.getCreatorUserName());
+			userDOCreator = generalService.getUserDO(userInputBO.getCreatorUserName());
 
 			logger.info("createUser - Create new user");
 			UserDO userDO = new UserDO();
@@ -110,28 +113,18 @@ public class UserService {
 			logger.info("createUser - New user created");
 
 			UserDO newUserDO = null;
-			newUserDO = getUserDetails(userInputBO.getUserName());
-			listErrors = saveUserRolDO(newUserDO, userDOCreator, listErrors);
-			listErrors = saveUserDetailsDO(userInputBO, newUserDO, userDOCreator, listErrors);
+			newUserDO = generalService.getUserDO(userInputBO.getUserName());
+			if (null != newUserDO) {
+				listErrors = saveUserRolDO(newUserDO, userDOCreator, listErrors);
+				listErrors = saveUserDetailsDO(userInputBO, newUserDO, userDOCreator, listErrors);
+				userOutputBO = fillUserOutputBO(newUserDO);
+			} else {
+				logger.severe("getBusinessByUser - The user not exist");
+				ResponseErrorBO responseErrorBO = new ResponseErrorBO(ErrorConstant.SYSTEM_ERROR_2,
+						ErrorConstant.ERROR_KEY_USER_NOT_EXIST, ErrorConstant.MSG_KEY_USER_NOT_EXIST);
+				listErrors.add(responseErrorBO);
+			}
 
-			logger.info("createUser - Fill details of new user");
-			userOutputBO = new UserOutputBO();
-			userOutputBO.setUserId(newUserDO.getId());
-			userOutputBO.setUserName(newUserDO.getUserName());
-			userOutputBO.setEmail(newUserDO.getEmail());
-			userOutputBO.setStatusCode(newUserDO.getStatusCode());
-			userOutputBO.setCreationDate(newUserDO.getCreationDate());
-			userOutputBO.setLastModifiedDate(newUserDO.getLastModifiedDate());
-			List<String> listRoles = null;
-			listRoles = getUserRoles(newUserDO);
-			userOutputBO.setRoles(listRoles);
-			UserDetailDO userDetailDO = null;
-			userDetailDO = userDetailRepository.findByUserDO(newUserDO);
-			userOutputBO.setFirstName(userDetailDO.getFirstName());
-			userOutputBO.setLastName(userDetailDO.getLastName());
-			userOutputBO.setSecondLastName(userDetailDO.getSecondLastName());
-			userOutputBO.setPhoneNumber(userDetailDO.getPhoneNumber());
-			userOutputBO.setHasWhatsApp(userDetailDO.isHasWhatsApp());
 		}
 		baseResponseBO.setData(listErrors.size() > 0 ? null : userOutputBO);
 		baseResponseBO.setErrors(listErrors);
@@ -156,7 +149,7 @@ public class UserService {
 		List<BusinessBO> listBusinessBO = null;
 
 		UserDO userDO = null;
-		userDO = getUserDetails(userName);
+		userDO = generalService.getUserDO(userName);
 		if (null != userDO) {
 			logger.info("getBusinessByUser - Search business of User");
 			listBusinessBO = new ArrayList<BusinessBO>();
@@ -184,27 +177,73 @@ public class UserService {
 
 		return new ResponseEntity<>(baseResponseBO, HttpStatus.OK);
 	}
-
+	
 	/**
 	 * @author Slam245
 	 * @method getUserDetails
 	 * @param userName String
-	 * @return UserDO
+	 * @return ResponseEntity<BaseResponseBO>
+	 * 
+	 */
+	@SuppressWarnings("rawtypes")
+	public ResponseEntity<BaseResponseBO> getUserDetails(String userName) {
+		logger.info("UserService - Method getUserDetails");
+		BaseResponseBO<UserOutputBO> baseResponseBO = new BaseResponseBO<UserOutputBO>();
+		List<ResponseErrorBO> listErrors = new ArrayList<ResponseErrorBO>();
+		UserOutputBO userOutputBO = null;
+
+		logger.info("getUserDetails - Search user in the DB.");
+		UserDO userDO = null;
+		userDO = generalService.getUserDO(userName);
+		if(null != userDO) {
+			userOutputBO = fillUserOutputBO(userDO);
+		}else {
+			logger.severe("getUserDetails - The user not exist");
+			ResponseErrorBO responseErrorBO = new ResponseErrorBO(ErrorConstant.SYSTEM_ERROR_2,
+					ErrorConstant.ERROR_KEY_USER_NOT_EXIST, ErrorConstant.MSG_KEY_USER_NOT_EXIST);
+			listErrors.add(responseErrorBO);
+		}
+		
+		baseResponseBO.setData(listErrors.size() > 0 ? null : userOutputBO);
+		baseResponseBO.setErrors(listErrors);
+		baseResponseBO.setSuccess(listErrors.size() > 0 ? Boolean.FALSE : Boolean.TRUE);
+		baseResponseBO.setTotalSize(listErrors.size() > 0 ? NumberConstant.NUMBER_0 : NumberConstant.NUMBER_1);
+
+		return new ResponseEntity<>(baseResponseBO, HttpStatus.OK);
+	}
+	
+	/**
+	 * @author Slam245
+	 * @method fillUserOutputBO
+	 * @param userDO UserDO
+	 * @return UserOutputBO
 	 *
 	 */
-	private UserDO getUserDetails(String userName) {
-		logger.info("createUser - Get user details: " + userName);
-		UserDO userDO = null;
-		if (null != userName) {
-			Optional<UserDO> optUserDO = null;
-			optUserDO = userRepository.findByUserName(userName);
-			logger.info(optUserDO.toString());
-			if (optUserDO.isPresent()) {
-				userDO = optUserDO.get();
-				logger.info("getUserDetails - Username exist: " + userDO.getUserName());
-			}
+	private UserOutputBO fillUserOutputBO(UserDO userDO) {
+		logger.info("UserService - Method fillUserOutputBO");
+		UserOutputBO userOutputBO = null;
+		if(null != userDO) {
+			userOutputBO = new UserOutputBO();
+			userOutputBO.setUserId(userDO.getId());
+			userOutputBO.setUserName(userDO.getUserName());
+			userOutputBO.setEmail(userDO.getEmail());
+			userOutputBO.setStatusCode(userDO.getStatusCode());
+			userOutputBO.setCreationDate(userDO.getCreationDate());
+			userOutputBO.setLastModifiedDate(userDO.getLastModifiedDate());
+			logger.info("fillUserOutputBO - Fill roles");
+			List<String> listRoles = null;
+			listRoles = getUserRoles(userDO);
+			userOutputBO.setRoles(listRoles);
+			logger.info("fillUserOutputBO - Get details");
+			UserDetailDO userDetailDO = null;
+			userDetailDO = userDetailRepository.findByUserDO(userDO);
+			userOutputBO.setFirstName(userDetailDO.getFirstName());
+			userOutputBO.setLastName(userDetailDO.getLastName());
+			userOutputBO.setSecondLastName(userDetailDO.getSecondLastName());
+			userOutputBO.setPhoneNumber(userDetailDO.getPhoneNumber());
+			userOutputBO.setHasWhatsApp(userDetailDO.isHasWhatsApp());
 		}
-		return userDO;
+		return userOutputBO;
 	}
 
 	/**
