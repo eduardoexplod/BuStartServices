@@ -13,18 +13,21 @@ public class UserOutputBO {
 	 * 
 	 */
 	public UserOutputBO() {
-		// TODO Auto-generated constructor stub
 	}
 
 	private Long userId;
 	private String userName;
 	private String email;
+	private String firstName;
+	private String lastName;
+	private String secondLastName;
+	private String phoneNumber;
+	private boolean hasWhatsApp;
 	private Date creationDate;
 	private Date lastModifiedDate; 
 	private Boolean statusCode;
 	private List<String> roles;
-
-
+	
 	/**
 	 * @return the userId
 	 */
@@ -60,6 +63,66 @@ public class UserOutputBO {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	/**
+	 * @return the firstName
+	 */
+	public String getFirstName() {
+		return firstName;
+	}
+	/**
+	 * @param firstName the firstName to set
+	 */
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	/**
+	 * @return the lastName
+	 */
+	public String getLastName() {
+		return lastName;
+	}
+	/**
+	 * @param lastName the lastName to set
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	/**
+	 * @return the secondLastName
+	 */
+	public String getSecondLastName() {
+		return secondLastName;
+	}
+	/**
+	 * @param secondLastName the secondLastName to set
+	 */
+	public void setSecondLastName(String secondLastName) {
+		this.secondLastName = secondLastName;
+	}
+	/**
+	 * @return the phoneNumber
+	 */
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	/**
+	 * @param phoneNumber the phoneNumber to set
+	 */
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	/**
+	 * @return the hasWhatsApp
+	 */
+	public boolean isHasWhatsApp() {
+		return hasWhatsApp;
+	}
+	/**
+	 * @param hasWhatsApp the hasWhatsApp to set
+	 */
+	public void setHasWhatsApp(boolean hasWhatsApp) {
+		this.hasWhatsApp = hasWhatsApp;
 	}
 	/**
 	 * @return the creationDate

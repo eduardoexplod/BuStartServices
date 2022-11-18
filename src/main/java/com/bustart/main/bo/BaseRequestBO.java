@@ -9,7 +9,7 @@ import javax.validation.Valid;
 public class BaseRequestBO<T> {
 
 	/**
-	 * 
+	 * Constructor
 	 */
 	public BaseRequestBO() {
 	}

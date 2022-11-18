@@ -27,6 +27,12 @@ import com.bustart.main.service.user.UserService;
 @RequestMapping("/v1/api/user")
 public class UserController{
 
+	/**
+	 * Constructor
+	 */
+	public UserController() {
+	}
+	
 	@Autowired
 	private UserService userService;
 
@@ -59,5 +65,20 @@ public class UserController{
 	@RequestMapping(value = "/getBusinessByUser", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BaseResponseBO> getBusinessByUser(@Valid @RequestParam String userName) {
 		return userService.getBusinessByUser(userName);
+	}
+	
+	/**
+	 * Method getUserDetails
+	 * 
+	 * @method getUserDetails
+	 * @param userName String
+	 * @return ResponseEntity<BaseResponseBO>
+	 */
+	@SuppressWarnings("rawtypes")
+	@GetMapping
+	@ResponseStatus(HttpStatus.OK)
+	@RequestMapping(value = "/getUserDetails", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BaseResponseBO> getUserDetails(@Valid @RequestParam String userName) {
+		return userService.getUserDetails(userName);
 	}
 }

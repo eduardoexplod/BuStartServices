@@ -20,19 +20,36 @@ public class UserInputBO {
 	public UserInputBO() {
 	}
 
-	@NotNull(message = ErrorConstant.ERROR_VALIDATION_USERNAME_REQUIRED)
-	@NotEmpty (message = ErrorConstant.ERROR_VALIDATION_USERNAME_REQUIRED)
+	@NotNull(message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
 	private String userName;
 	
-	@NotNull(message = ErrorConstant.ERROR_VALIDATION_EMAIL_REQUIRED)
-	@NotEmpty (message = ErrorConstant.ERROR_VALIDATION_EMAIL_REQUIRED)
-	@Email (message = ErrorConstant.ERROR_VALIDATION_EMAIL_FORMAT_REQUIRED)
+	@NotNull(message = ErrorConstant.ERROR_VAL_EMAIL_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_EMAIL_REQUIRED)
+	@Email (message = ErrorConstant.ERROR_VAL_EMAIL_FORMAT_REQUIRED)
 	private String email;
 	
-	@NotNull(message = ErrorConstant.ERROR_VALIDATION_PASSWORD_REQUIRED)
-	@NotEmpty (message = ErrorConstant.ERROR_VALIDATION_PASSWORD_REQUIRED)
-	@Pattern (regexp= PatternConstant.PATTERN_PASSWORD, message = ErrorConstant.ERROR_VALIDATION_PASSWORD_FORMAT)
+	@NotNull(message = ErrorConstant.ERROR_VAL_PASSWORD_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_PASSWORD_REQUIRED)
+	@Pattern (regexp= PatternConstant.PATTERN_PASSWORD, message = ErrorConstant.ERROR_VAL_PASSWORD_FORMAT)
 	private String password;
+	
+	@NotNull(message = ErrorConstant.ERROR_VAL_FIRST_NAME_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_FIRST_NAME_REQUIRED)
+	private String firstName;
+
+	@NotNull(message = ErrorConstant.ERROR_VAL_LAST_NAME_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_LAST_NAME_REQUIRED)
+	private String lastName;
+	
+	private String secondLastName;
+	
+	@NotNull(message = ErrorConstant.ERROR_VAL_PHONE_NUMBER_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_PHONE_NUMBER_REQUIRED)
+	private String phoneNumber;
+	
+	@NotNull(message = ErrorConstant.ERROR_VAL_HAS_WHATSAPP_REQUIRED)
+	private boolean hasWhatsApp;
 	
 	private String creatorUserName;
 		
@@ -85,5 +102,67 @@ public class UserInputBO {
 	public void setCreatorUserName(String creatorUserName) {
 		this.creatorUserName = creatorUserName;
 	}
+	/**
+	 * @return the firstName
+	 */
+	public String getFirstName() {
+		return firstName;
+	}
+	/**
+	 * @param firstName the firstName to set
+	 */
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	/**
+	 * @return the lastName
+	 */
+	public String getLastName() {
+		return lastName;
+	}
+	/**
+	 * @param lastName the lastName to set
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	/**
+	 * @return the secondLastName
+	 */
+	public String getSecondLastName() {
+		return secondLastName;
+	}
+	/**
+	 * @param secondLastName the secondLastName to set
+	 */
+	public void setSecondLastName(String secondLastName) {
+		this.secondLastName = secondLastName;
+	}
+	/**
+	 * @return the phoneNumber
+	 */
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	/**
+	 * @param phoneNumber the phoneNumber to set
+	 */
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	/**
+	 * @return the hasWhatsApp
+	 */
+	public boolean isHasWhatsApp() {
+		return hasWhatsApp;
+	}
+	/**
+	 * @param hasWhatsApp the hasWhatsApp to set
+	 */
+	public void setHasWhatsApp(boolean hasWhatsApp) {
+		this.hasWhatsApp = hasWhatsApp;
+	}
+
 	
+
 }

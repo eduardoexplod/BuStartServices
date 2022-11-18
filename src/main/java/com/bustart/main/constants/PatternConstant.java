@@ -11,8 +11,7 @@ public class PatternConstant {
 	private PatternConstant() {
 	}
 	
-	/** The Constant EMPTY_STRING. */
+	/** The constant pattern PATTERN_PASSWORD. */
 	public static final String PATTERN_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
-	
 	
 }

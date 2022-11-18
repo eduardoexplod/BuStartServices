@@ -25,7 +25,7 @@ public class BusinessDO extends AuditBaseDO<Long> implements Serializable{
 	private Long id;
 
 	@Column(name = "DS_BUSINESS", nullable = false)
-	private String roleName;
+	private String business;
 
 	@Column(name = "DS_DESCRIPTION", nullable = false)
 	private String description;
@@ -46,17 +46,17 @@ public class BusinessDO extends AuditBaseDO<Long> implements Serializable{
 	}
 
 	/**
-	 * @return the role
+	 * @return the business
 	 */
-	public String getRoleName() {
-		return roleName;
+	public String getBusiness() {
+		return business;
 	}
 
 	/**
-	 * @param role the role to set
+	 * @param business the business to set
 	 */
-	public void setRole(String roleName) {
-		this.roleName = roleName;
+	public void setBusiness(String business) {
+		this.business = business;
 	}
 
 	/**
