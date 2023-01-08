@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bustart.main.bo.BaseRequestBO;
 import com.bustart.main.bo.BaseResponseBO;
 import com.bustart.main.bo.BusinessInputBO;
+import com.bustart.main.bo.BusinessUserInputBO;
 import com.bustart.main.service.user.BusinessService;
 
 /**
@@ -47,10 +48,23 @@ public class BusinessController {
 	 * @return ResponseEntity<BaseResponseBO>
 	 */
 	@SuppressWarnings("rawtypes")
-	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	@RequestMapping(value = "/createBusiness", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/createBusiness", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BaseResponseBO> createUser(@Valid @RequestBody BaseRequestBO<BusinessInputBO> request) {
 		return businessService.createBusiness(request.getBusinessRequest());
+	}
+	
+	/**
+	 * Method addBusinessToUser
+	 * 
+	 * @method addBusinessToUser
+	 * @param businessInputBO BusinessInputBO
+	 * @return ResponseEntity<BaseResponseBO>
+	 */
+	@SuppressWarnings("rawtypes")
+	@ResponseStatus(HttpStatus.CREATED)
+	@PostMapping(value = "/addBusinessToUser", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BaseResponseBO> addBusinessToUser(@Valid @RequestBody BaseRequestBO<BusinessUserInputBO> request) {
+		return businessService.addBusinessToUser(request.getBusinessRequest());
 	}
 }

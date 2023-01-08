@@ -11,5 +11,6 @@ import com.bustart.main.model.BusinessDO;
 public interface BusinessRepository extends JpaRepository<BusinessDO, Long>{
 
 	Optional<BusinessDO> findByBusiness(String business);
-
+	
+	Optional<BusinessDO> findById(Long id);
 }

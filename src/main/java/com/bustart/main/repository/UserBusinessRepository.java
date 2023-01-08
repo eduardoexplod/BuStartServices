@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.bustart.main.model.BusinessDO;
 import com.bustart.main.model.UserBusinessDO;
 import com.bustart.main.model.UserDO;
 
@@ -12,5 +13,7 @@ import com.bustart.main.model.UserDO;
 public interface UserBusinessRepository extends JpaRepository<UserBusinessDO, Long>{
 
 	List<UserBusinessDO> findByUserDO(UserDO userDO);
+	
+	List<UserBusinessDO> findByUserDOAndBusinessDO(UserDO userDO, BusinessDO businessDO);
 
 }

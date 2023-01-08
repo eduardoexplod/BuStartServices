@@ -25,7 +25,7 @@ public class BusinessInputBO {
 	private String businessDescription;
 	@NotNull(message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
 	@NotEmpty (message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
-	private String userName;
+	private String userNameCreator;
 	
 	/**
 	 * @return the business
@@ -52,15 +52,16 @@ public class BusinessInputBO {
 		this.businessDescription = businessDescription;
 	}
 	/**
-	 * @return the userName
+	 * @return the userNameCreator
 	 */
-	public String getUserName() {
-		return userName;
+	public String getUserNameCreator() {
+		return userNameCreator;
 	}
 	/**
-	 * @param userName the userName to set
+	 * @param userNameCreator the userNameCreator to set
 	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserNameCreator(String userNameCreator) {
+		this.userNameCreator = userNameCreator;
 	}
+
 }

@@ -44,9 +44,8 @@ public class UserController{
 	 * @return ResponseEntity<BaseResponseBO>
 	 */
 	@SuppressWarnings("rawtypes")
-	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	@RequestMapping(value = "/createUser", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/createUser", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BaseResponseBO> createUser(@Valid @RequestBody BaseRequestBO<UserInputBO> request) {
 		return userService.createUser(request.getBusinessRequest());
 	}
@@ -60,9 +59,8 @@ public class UserController{
 	 * @return ResponseEntity<BaseResponseBO>
 	 */
 	@SuppressWarnings("rawtypes")
-	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping(value = "/getBusinessByUser", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/getBusinessByUser", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BaseResponseBO> getBusinessByUser(@Valid @RequestParam String userName) {
 		return userService.getBusinessByUser(userName);
 	}
@@ -75,9 +73,8 @@ public class UserController{
 	 * @return ResponseEntity<BaseResponseBO>
 	 */
 	@SuppressWarnings("rawtypes")
-	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping(value = "/getUserDetails", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/getUserDetails", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BaseResponseBO> getUserDetails(@Valid @RequestParam String userName) {
 		return userService.getUserDetails(userName);
 	}

@@ -96,7 +96,7 @@ public class UserService {
 		} else {
 			logger.info("createUser - Search creator username ");
 			UserDO userDOCreator = null;
-			userDOCreator = generalService.getUserDO(userInputBO.getCreatorUserName());
+			userDOCreator = generalService.getUserDO(userInputBO.getUserNameCreator());
 
 			logger.info("createUser - Create new user");
 			UserDO userDO = new UserDO();

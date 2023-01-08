@@ -58,6 +58,20 @@ public class ErrorConstant {
 	/** The Constant MSG_KEY_USER_NOT_EXIST. */
 	public static final String MSG_KEY_BUSINESS_NOT_EXIST = "The business not exist in DB.";
 	
+	/** The Constant ERROR_5. */
+	public static final Long SYSTEM_ERROR_5 = 5L;
+	/** The Constant ERROR_KEY_USER_CREATOR_NOT_EXIST. */
+	public static final String ERROR_KEY_USER_CREATOR_NOT_EXIST = "KEY_USER_CREATOR_NOT_EXIST";
+	/** The Constant MSG_KEY_USER_CREATOR_NOT_EXIST. */
+	public static final String MSG_KEY_USER_CREATOR_NOT_EXIST = "The user that create not exist in DB.";
+	
+	/** The Constant ERROR_6. */
+	public static final Long SYSTEM_ERROR_6 = 6L;
+	/** The Constant ERROR_KEY_BUSINESS_LIST_NOT_VALID. */
+	public static final String ERROR_KEY_BUSINESS_LIST_NOT_VALID = "KEY_BUSINESS_LIST_NOT_VALID";
+	/** The Constant MSG_KEY_BUSINESS_LIST_NOT_VALID. */
+	public static final String MSG_KEY_BUSINESS_LIST_NOT_VALID = "The list of the ids Business is not valid.";
+	
 	/** The Constant SYSTEM_ERROR_99999. */
 	public static final Long SYSTEM_ERROR_99999 = 99999L;
 	/** The Constant MSG_KEY_INPUT_ERROR. */
@@ -85,5 +99,14 @@ public class ErrorConstant {
 	public static final String ERROR_VAL_BUSINESS_REQUIRED = "ERROR_VAL_BUSINESS_REQUIRED";
 	/** The Constant ERROR_VAL_BUSINESS_DESCRIPTION_REQUIRED */
 	public static final String ERROR_VAL_BUSINESS_DESCRIPTION_REQUIRED = "ERROR_VAL_BUSINESS_DESCRIPTION_REQUIRED";
+	/** The Constant ERROR_VAL_BUSINESS_LIST_REQUIRED */
+	public static final String ERROR_VAL_BUSINESS_LIST_REQUIRED = "ERROR_VAL_BUSINESS_LIST_REQUIRED";
+	/** The Constant ERROR_VAL_USERNAME_CREATOR_REQUIRED */
+	public static final String ERROR_VAL_USERNAME_CREATOR_REQUIRED = "ERROR_VAL_USERNAME_CREATOR_REQUIRED";
+	
+	/** The Constant ERROR_KEY_BUSINESS_IS_NULL. */
+	public static final String ERROR_KEY_BUSINESS_IS_NULL = "KEY_BUSINESS_IS_NULL";
+	/** The Constant ERROR_KEY_BUSINESS_ALREADY_EXIST. */
+	public static final String ERROR_KEY_BUSINESS_ALREADY_EXIST = "KEY_BUSINESS_ALREADY_EXIST";
 }
 
