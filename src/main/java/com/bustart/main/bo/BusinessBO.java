@@ -18,6 +18,7 @@ public class BusinessBO {
 	private String business;
 	private Date dateOfCreation;
 	private String userCreated;
+	
 	/**
 	 * @return the idBusiness
 	 */

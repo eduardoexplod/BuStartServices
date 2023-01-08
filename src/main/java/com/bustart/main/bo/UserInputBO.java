@@ -51,9 +51,8 @@ public class UserInputBO {
 	@NotNull(message = ErrorConstant.ERROR_VAL_HAS_WHATSAPP_REQUIRED)
 	private boolean hasWhatsApp;
 	
-	private String creatorUserName;
+	private String userNameCreator;
 		
-	
 	/**
 	 * @return the userName
 	 */
@@ -89,18 +88,6 @@ public class UserInputBO {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	/**
-	 * @return the creatorUserName
-	 */
-	public String getCreatorUserName() {
-		return creatorUserName;
-	}
-	/**
-	 * @param creatorUserName the creatorUserName to set
-	 */
-	public void setCreatorUserName(String creatorUserName) {
-		this.creatorUserName = creatorUserName;
 	}
 	/**
 	 * @return the firstName
@@ -162,7 +149,16 @@ public class UserInputBO {
 	public void setHasWhatsApp(boolean hasWhatsApp) {
 		this.hasWhatsApp = hasWhatsApp;
 	}
-
-	
-
+	/**
+	 * @return the userNameCreator
+	 */
+	public String getUserNameCreator() {
+		return userNameCreator;
+	}
+	/**
+	 * @param userNameCreator the userNameCreator to set
+	 */
+	public void setUserNameCreator(String userNameCreator) {
+		this.userNameCreator = userNameCreator;
+	}
 }
