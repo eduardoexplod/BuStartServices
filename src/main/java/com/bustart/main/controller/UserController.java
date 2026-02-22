@@ -2,7 +2,7 @@
 package com.bustart.main.controller;
 
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,7 +49,6 @@ public class UserController{
 	public ResponseEntity<BaseResponseBO> createUser(@Valid @RequestBody BaseRequestBO<UserInputBO> request) {
 		return userService.createUser(request.getBusinessRequest());
 	}
-
 
 	/**
 	 * Method getBusinessByUser

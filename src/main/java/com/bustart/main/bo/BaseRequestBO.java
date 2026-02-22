@@ -1,6 +1,6 @@
 package com.bustart.main.bo;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * @author Slam245

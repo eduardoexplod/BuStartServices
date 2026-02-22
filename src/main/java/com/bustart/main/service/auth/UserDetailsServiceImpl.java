@@ -63,6 +63,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		}
 		logger.info("loadUserByUsername - User not exist");
 		throw new UsernameNotFoundException("User not exist");
-		
 	}
 }
