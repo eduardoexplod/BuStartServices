@@ -1,0 +1,79 @@
+package com.bustart.main.model;
+
+import java.io.Serializable;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+/**
+ * @author Slam245
+ *
+ */
+@Entity
+@Table(name = "CS_ROLE")
+public class RoleDO  extends AuditBaseDO<Long> implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3753052979880565838L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "PK_ROLE_ID")
+	private Long id;
+
+	@Column(name = "DS_ROLE", nullable = false)
+	private String roleName;
+
+	@Column(name = "DS_DESCRIPTION", nullable = false)
+	private String description;
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the role
+	 */
+	public String getRoleName() {
+		return roleName;
+	}
+
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String roleName) {
+		this.roleName = roleName;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+}
