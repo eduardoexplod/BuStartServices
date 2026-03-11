@@ -34,6 +34,7 @@ import com.bustart.main.repository.UserBusinessRepository;
 import com.bustart.main.repository.UserDetailRepository;
 import com.bustart.main.repository.UserRepository;
 import com.bustart.main.repository.UserRoleRepository;
+import com.bustart.main.service.general.GeneralService;
 
 /**
  * @author Slam245
