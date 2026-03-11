@@ -1,23 +1,5 @@
 package com.bustart.main.service.customer;
 
-import com.bustart.main.bo.BaseResponseBO;
-import com.bustart.main.bo.BusinessJoinUserOutputBO;
-import com.bustart.main.bo.BusinessUserInputBO;
-import com.bustart.main.bo.CustomerInputBO;
-import com.bustart.main.bo.CustomerOutputBO;
-import com.bustart.main.bo.ResponseErrorBO;
-import com.bustart.main.bo.UserOutputBO;
-import com.bustart.main.constants.ErrorConstant;
-import com.bustart.main.constants.NumberConstant;
-import com.bustart.main.model.CustomerDO;
-import com.bustart.main.model.UserDO;
-import com.bustart.main.model.UserDetailDO;
-import com.bustart.main.repository.BusinessRepository;
-import com.bustart.main.repository.CustomerRepository;
-import com.bustart.main.repository.UserBusinessRepository;
-import com.bustart.main.service.general.GeneralService;
-import com.bustart.main.service.user.BusinessService;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,11 +8,21 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.bustart.main.bo.BaseResponseBO;
+import com.bustart.main.bo.CustomerInputBO;
+import com.bustart.main.bo.CustomerOutputBO;
+import com.bustart.main.bo.ResponseErrorBO;
+import com.bustart.main.constants.ErrorConstant;
+import com.bustart.main.constants.NumberConstant;
+import com.bustart.main.model.CustomerDO;
+import com.bustart.main.model.UserDO;
+import com.bustart.main.repository.CustomerRepository;
+import com.bustart.main.service.general.GeneralService;
+import com.bustart.main.service.user.BusinessService;
 
 /**
  * Service class for handling customer-related business operations.
