@@ -2,6 +2,11 @@ package com.bustart.main.bo;
 
 import java.io.Serializable;
 
+import com.bustart.main.constants.ErrorConstant;
+
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 /**
  * Business Object representing the customer data for business logic processing.
  * This class is used as a data transfer container for the customer creation service.
@@ -17,6 +22,9 @@ public class CustomerInputBO implements Serializable {
     private String phoneNumber;
     private String email;
     private Boolean hasWhatsapp;
+    @NotNull(message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
+	private String userNameCreator;
 
     /**
      * Default constructor.
@@ -123,4 +131,16 @@ public class CustomerInputBO implements Serializable {
     public void setHasWhatsapp(Boolean hasWhatsapp) {
         this.hasWhatsapp = hasWhatsapp;
     }
+    /**
+	 * @return the userNameCreator
+	 */
+	public String getUserNameCreator() {
+		return userNameCreator;
+	}
+	/**
+	 * @param userNameCreator the userNameCreator to set
+	 */
+	public void setUserNameCreator(String userNameCreator) {
+		this.userNameCreator = userNameCreator;
+	}
 }

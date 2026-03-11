@@ -28,6 +28,7 @@ import com.bustart.main.model.UserBusinessDO;
 import com.bustart.main.model.UserDO;
 import com.bustart.main.repository.BusinessRepository;
 import com.bustart.main.repository.UserBusinessRepository;
+import com.bustart.main.service.general.GeneralService;
 
 /**
  * @author Slam245
@@ -267,7 +268,7 @@ public class BusinessService {
 			if (null != businessDO.getCreatorUserDO()) {
 				businessOutputBO.setUserNameCreator(businessDO.getCreatorUserDO().getUserName());
 			}
-			businessOutputBO.setModificationDate(businessDO.getLastModifiedDate());
+			businessOutputBO.setLastModifiedDate(businessDO.getLastModifiedDate());
 			if (null != businessDO.getLastModifiedUserDO()) {
 				businessOutputBO.setUserNameLastModifier(businessDO.getLastModifiedUserDO().getUserName());
 			}

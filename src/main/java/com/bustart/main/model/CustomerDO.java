@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "MM_CUSTOMER")
-public class CustomerDO implements Serializable {
+public class CustomerDO extends AuditBaseDO<Long> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

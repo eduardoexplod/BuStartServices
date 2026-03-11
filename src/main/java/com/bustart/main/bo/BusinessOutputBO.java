@@ -20,7 +20,7 @@ public class BusinessOutputBO {
 	private String userNameCreator;
 	private Date creationDate;
 	private String userNameLastModifier;
-	private Date modificationDate; 
+	private Date lastModifiedDate; 
 	private Boolean statusCode;
 	/**
 	 * @return the businessId
@@ -95,16 +95,16 @@ public class BusinessOutputBO {
 		this.userNameLastModifier = userNameLastModifier;
 	}
 	/**
-	 * @return the modificationDate
+	 * @return the lastModifiedDate
 	 */
-	public Date getModificationDate() {
-		return modificationDate;
+	public Date getLastModifiedDate() {
+		return lastModifiedDate;
 	}
 	/**
-	 * @param modificationDate the modificationDate to set
+	 * @param lastModifiedDate the lastModifiedDate to set
 	 */
-	public void setModificationDate(Date modificationDate) {
-		this.modificationDate = modificationDate;
+	public void setLastModifiedDate(Date lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
 	}
 	/**
 	 * @return the statusCode

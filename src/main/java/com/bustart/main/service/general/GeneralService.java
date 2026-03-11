@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bustart.main.service.user;
+package com.bustart.main.service.general;
 
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bustart.main.model.BusinessDO;
+import com.bustart.main.model.CustomerDO;
 import com.bustart.main.model.UserDO;
 import com.bustart.main.repository.BusinessRepository;
+import com.bustart.main.repository.CustomerRepository;
 import com.bustart.main.repository.UserRepository;
 
 /**
@@ -28,6 +30,9 @@ public class GeneralService {
 
 	@Autowired
 	private BusinessRepository businessRepository;
+
+	@Autowired
+	private CustomerRepository customerRepository;
 	
 	/**
 	 * Implement Logger
@@ -76,5 +81,27 @@ public class GeneralService {
 			}
 		}
 		return businessDO;
+	}
+
+	/**
+	 * @author Slam245
+	 * @method getCustomerDO
+	 * @param phoneNumber String
+	 * @return CustomerDO
+	 *
+	 */
+	public CustomerDO getCustomerDO(String phoneNumber) {
+		logger.info("GeneralService - Get customerDO: " + phoneNumber);
+		CustomerDO customerDO = null;
+		if (null != phoneNumber) {
+			Optional<CustomerDO> optCustomerDO = null;
+			optCustomerDO = customerRepository.findByPhoneNumber(phoneNumber);
+			logger.info(optCustomerDO.toString());
+			if (optCustomerDO.isPresent()) {
+				customerDO = optCustomerDO.get();
+				logger.info("getCustomerDO - customerDO exist: " + customerDO.getId());
+			}
+		}
+		return customerDO;
 	}
 }
