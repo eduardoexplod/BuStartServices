@@ -20,7 +20,7 @@ import com.bustart.main.bo.BaseRequestBO;
 import com.bustart.main.bo.BaseResponseBO;
 import com.bustart.main.bo.BusinessInputBO;
 import com.bustart.main.bo.BusinessUserInputBO;
-import com.bustart.main.service.user.BusinessService;
+import com.bustart.main.service.business.BusinessService;
 
 /**
  * @author Slam245

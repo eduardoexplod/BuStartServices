@@ -72,6 +72,13 @@ public class ErrorConstant {
 	/** The Constant MSG_KEY_BUSINESS_LIST_NOT_VALID. */
 	public static final String MSG_KEY_BUSINESS_LIST_NOT_VALID = "The list of the ids Business is not valid.";
 	
+	/** The Constant ERROR_7. */
+	public static final Long SYSTEM_ERROR_7 = 7L;
+	/** The Constant ERROR_KEY_CUSTOMER_EXIST. */
+	public static final String ERROR_KEY_CUSTOMER_EXIST = "KEY_CUSTOMER_EXIST";
+	/** The Constant MSG_KEY_CUSTOMER_EXIST. */
+	public static final String MSG_KEY_CUSTOMER_EXIST = "The customer exist in DB.";
+
 	/** The Constant SYSTEM_ERROR_99999. */
 	public static final Long SYSTEM_ERROR_99999 = 99999L;
 	/** The Constant MSG_KEY_INPUT_ERROR. */
@@ -103,6 +110,8 @@ public class ErrorConstant {
 	public static final String ERROR_VAL_BUSINESS_LIST_REQUIRED = "ERROR_VAL_BUSINESS_LIST_REQUIRED";
 	/** The Constant ERROR_VAL_USERNAME_CREATOR_REQUIRED */
 	public static final String ERROR_VAL_USERNAME_CREATOR_REQUIRED = "ERROR_VAL_USERNAME_CREATOR_REQUIRED";
+	/** The Constant ERROR_VAL_ADDRESS_REQUIRED */
+	public static final String ERROR_VAL_ADDRESS_REQUIRED = "ERROR_VAL_ADDRESS_REQUIRED";
 	
 	/** The Constant ERROR_KEY_BUSINESS_IS_NULL. */
 	public static final String ERROR_KEY_BUSINESS_IS_NULL = "KEY_BUSINESS_IS_NULL";

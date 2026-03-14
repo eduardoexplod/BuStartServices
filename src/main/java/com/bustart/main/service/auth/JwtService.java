@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import javax.crypto.SecretKey;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,15 +19,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bustart.main.bo.AuthOutputBO;
 import com.bustart.main.bo.BaseResponseBO;
-import com.bustart.main.bo.BusinessInputBO;
-import com.bustart.main.bo.BusinessOutputBO;
 import com.bustart.main.bo.LoginInputBO;
 import com.bustart.main.bo.ResponseErrorBO;
-import com.bustart.main.bo.UserOutputBO;
 import com.bustart.main.constants.ErrorConstant;
 import com.bustart.main.constants.NumberConstant;
-import com.bustart.main.model.BusinessDO;
-import com.bustart.main.model.UserDO;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;

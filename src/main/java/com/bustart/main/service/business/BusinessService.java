@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bustart.main.service.user;
+package com.bustart.main.service.business;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -65,7 +65,7 @@ public class BusinessService {
 		logger.info("BusinessService - Method addBusinessToUser");
 		BaseResponseBO<List<BusinessJoinUserOutputBO>> baseResponseBO = new BaseResponseBO<List<BusinessJoinUserOutputBO>>();
 		List<ResponseErrorBO> listErrors = new ArrayList<ResponseErrorBO>();
-		List<BusinessJoinUserOutputBO> listBusinessJoinUserOutputBO = null;
+		List<BusinessJoinUserOutputBO> listBusinessJoinUserOutputBO = new ArrayList<BusinessJoinUserOutputBO>();
 
 		logger.info("addBusinessToUser - Search creator username ");
 		UserDO userDOCreator = null;
