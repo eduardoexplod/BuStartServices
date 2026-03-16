@@ -1,5 +1,10 @@
 package com.bustart.main.bo;
 
+import com.bustart.main.constants.ErrorConstant;
+
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 public class LoginInputBO {
 	/**
 	 * 
@@ -7,7 +12,11 @@ public class LoginInputBO {
 	public LoginInputBO() {
 	}
 
+	@NotNull(message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
 	private String userName;
+	@NotNull(message = ErrorConstant.ERROR_VAL_PASSWORD_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_PASSWORD_REQUIRED)
 	private String password;
 	
 	/**

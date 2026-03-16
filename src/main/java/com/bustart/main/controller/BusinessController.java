@@ -20,7 +20,7 @@ import com.bustart.main.bo.BaseRequestBO;
 import com.bustart.main.bo.BaseResponseBO;
 import com.bustart.main.bo.BusinessInputBO;
 import com.bustart.main.bo.BusinessUserInputBO;
-import com.bustart.main.service.user.BusinessService;
+import com.bustart.main.service.business.BusinessService;
 
 /**
  * @author Slam245
@@ -49,9 +49,9 @@ public class BusinessController {
 	 */
 	@SuppressWarnings("rawtypes")
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping(value = "/createBusiness", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<BaseResponseBO> createUser(@Valid @RequestBody BaseRequestBO<BusinessInputBO> request) {
-		return businessService.createBusiness(request.getBusinessRequest());
+	@PostMapping(value = "/addBusiness", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BaseResponseBO> addBusiness(@Valid @RequestBody BaseRequestBO<BusinessInputBO> request) {
+		return businessService.addBusiness(request.getBusinessRequest());
 	}
 	
 	/**

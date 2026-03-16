@@ -147,13 +147,12 @@ public class UserService {
 		logger.info("UserService - Method getBusinessByUser");
 		BaseResponseBO<List<BusinessBO>> baseResponseBO = new BaseResponseBO<List<BusinessBO>>();
 		List<ResponseErrorBO> listErrors = new ArrayList<ResponseErrorBO>();
-		List<BusinessBO> listBusinessBO = null;
+		List<BusinessBO> listBusinessBO = new ArrayList<BusinessBO>();
 
 		UserDO userDO = null;
 		userDO = generalService.getUserDO(userName);
 		if (null != userDO) {
 			logger.info("getBusinessByUser - Search business of User");
-			listBusinessBO = new ArrayList<BusinessBO>();
 			List<UserBusinessDO> listUserBusinessDO = new ArrayList<UserBusinessDO>();
 			listUserBusinessDO = userBusinessRepository.findByUserDO(userDO);
 			logger.info("getBusinessByUser - Load business of user");

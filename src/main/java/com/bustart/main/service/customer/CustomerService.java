@@ -21,8 +21,8 @@ import com.bustart.main.constants.NumberConstant;
 import com.bustart.main.model.CustomerDO;
 import com.bustart.main.model.UserDO;
 import com.bustart.main.repository.CustomerRepository;
+import com.bustart.main.service.business.BusinessService;
 import com.bustart.main.service.general.GeneralService;
-import com.bustart.main.service.user.BusinessService;
 
 /**
  * Service class for handling customer-related business operations.
@@ -63,15 +63,16 @@ public class CustomerService {
         if (optCustomerDO.isPresent()) {
             logger.severe("createCustomer - The customer exist: " + optCustomerDO.get().getId());
             ResponseErrorBO responseErrorBO = new ResponseErrorBO(ErrorConstant.SYSTEM_ERROR_1,
-                    ErrorConstant.ERROR_KEY_USER_EXIST, ErrorConstant.MSG_KEY_USER_EXIST);
+                    ErrorConstant.ERROR_KEY_CUSTOMER_EXIST, ErrorConstant.MSG_KEY_CUSTOMER_EXIST);
             listErrors.add(responseErrorBO);
         } else {
             logger.info("createCustomer - Search creator username ");
 			UserDO userDOCreator = null;
 			userDOCreator = generalService.getUserDO(customerInputBO.getUserNameCreator());
+            logger.info("createCustomer - llegue");
 			if (null != userDOCreator) {
                 // Map BO to DO (Data Object / Entity)
-                logger.info("createCustomer - The customer exist: " + optCustomerDO.get().getId());
+                logger.info("createCustomer - Save the customer in the DB ");
                 CustomerDO customerDO = new CustomerDO();
                 customerDO.setFirstName(customerInputBO.getFirstName());
                 customerDO.setLastName(customerInputBO.getLastName());
