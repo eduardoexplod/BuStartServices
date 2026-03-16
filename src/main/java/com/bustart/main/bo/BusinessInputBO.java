@@ -20,11 +20,13 @@ public class BusinessInputBO {
 	@NotNull(message = ErrorConstant.ERROR_VAL_BUSINESS_REQUIRED)
 	@NotEmpty (message = ErrorConstant.ERROR_VAL_BUSINESS_REQUIRED)	
 	private String business;
+
 	@NotNull(message = ErrorConstant.ERROR_VAL_BUSINESS_DESCRIPTION_REQUIRED)
 	@NotEmpty (message = ErrorConstant.ERROR_VAL_BUSINESS_DESCRIPTION_REQUIRED)
 	private String businessDescription;
-	@NotNull(message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
-	@NotEmpty (message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
+	
+	@NotNull(message = ErrorConstant.ERROR_VAL_USERNAME_CREATOR_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_USERNAME_CREATOR_REQUIRED)
 	private String userNameCreator;
 	
 	/**

@@ -47,7 +47,7 @@ public class GeneralService {
 	 *
 	 */
 	public UserDO getUserDO(String userName) {
-		logger.info("GeneralService - Get userDO: " + userName);
+		logger.info("GeneralService - Get userName: " + userName);
 		UserDO userDO = null;
 		if (null != userName) {
 			Optional<UserDO> optUserDO = null;

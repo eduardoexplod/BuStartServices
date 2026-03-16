@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import com.bustart.main.constants.ErrorConstant;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -15,15 +16,32 @@ public class CustomerInputBO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @NotNull(message = ErrorConstant.ERROR_VAL_FIRST_NAME_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_FIRST_NAME_REQUIRED)
     private String firstName;
+    
+    @NotNull(message = ErrorConstant.ERROR_VAL_LAST_NAME_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_LAST_NAME_REQUIRED)
     private String lastName;
+
     private String secondLastName;
+
+    @NotNull(message = ErrorConstant.ERROR_VAL_ADDRESS_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_ADDRESS_REQUIRED)
     private String address;
+
+    @NotNull(message = ErrorConstant.ERROR_VAL_PHONE_NUMBER_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_PHONE_NUMBER_REQUIRED)
     private String phoneNumber;
+
+	@Email (message = ErrorConstant.ERROR_VAL_EMAIL_FORMAT_REQUIRED)
     private String email;
+    
+    @NotNull(message = ErrorConstant.ERROR_VAL_HAS_WHATSAPP_REQUIRED)
     private Boolean hasWhatsapp;
-    @NotNull(message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
-	@NotEmpty (message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
+
+    @NotNull(message = ErrorConstant.ERROR_VAL_USERNAME_CREATOR_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_USERNAME_CREATOR_REQUIRED)
 	private String userNameCreator;
 
     /**
