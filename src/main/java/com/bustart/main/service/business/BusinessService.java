@@ -183,29 +183,29 @@ public class BusinessService {
 
 	/**
 	 * @author Slam245
-	 * @method createUser
-	 * @param userInputBO UserInputBO
+	 * @method addBusiness
+	 * @param businessInputBO BusinessInputBO
 	 * @return ResponseEntity<BaseResponseBO>
 	 *
 	 */
 	@SuppressWarnings("rawtypes")
 	@Transactional
-	public ResponseEntity<BaseResponseBO> createBusiness(BusinessInputBO businessInputBO) {
-		logger.info("BusinessService - Method createBusiness");
+	public ResponseEntity<BaseResponseBO> addBusiness(BusinessInputBO businessInputBO) {
+		logger.info("BusinessService - Method addBusiness");
 		BaseResponseBO<BusinessOutputBO> baseResponseBO = new BaseResponseBO<BusinessOutputBO>();
 		List<ResponseErrorBO> listErrors = new ArrayList<ResponseErrorBO>();
 		BusinessOutputBO businessOutputBO = null;
 
-		logger.info("createBusiness: Search the business in DB - " + businessInputBO.getBusiness());
+		logger.info("addBusiness: Search the business in DB - " + businessInputBO.getBusiness());
 		Optional<BusinessDO> optBusinessDO = null;
 		optBusinessDO = businessRepository.findByBusiness(businessInputBO.getBusiness());
 		if (optBusinessDO.isPresent()) {
-			logger.severe("createBusiness - The business exist: " + optBusinessDO.get().getId());
+			logger.severe("addBusiness - The business exist: " + optBusinessDO.get().getId());
 			ResponseErrorBO responseErrorBO = new ResponseErrorBO(ErrorConstant.SYSTEM_ERROR_3,
 					ErrorConstant.ERROR_KEY_BUSINESS_EXIST, ErrorConstant.MSG_KEY_BUSINESS_EXIST);
 			listErrors.add(responseErrorBO);
 		} else {
-			logger.info("createBusiness - Search creator username ");
+			logger.info("addBusiness - Search creator username ");
 			UserDO userDOCreator = null;
 			userDOCreator = generalService.getUserDO(businessInputBO.getUserNameCreator());
 			if (null != userDOCreator) {
@@ -220,20 +220,20 @@ public class BusinessService {
 				businessDO.setStatusCode(Boolean.TRUE);
 				businessRepository.save(businessDO);
 				businessRepository.flush();
-				logger.info("createBusiness - New business created");
+				logger.info("addBusiness - New business created");
 
 				BusinessDO newBusinessDO = null;
 				newBusinessDO = generalService.getBusinessDO(businessInputBO.getBusiness());
 				if (null != newBusinessDO) {
 					businessOutputBO = fillBusinessOutputBO(newBusinessDO);
 				} else {
-					logger.severe("createBusiness - The business not exist");
+					logger.severe("addBusiness - The business not exist");
 					ResponseErrorBO responseErrorBO = new ResponseErrorBO(ErrorConstant.SYSTEM_ERROR_4,
 							ErrorConstant.ERROR_KEY_BUSINESS_NOT_EXIST, ErrorConstant.MSG_KEY_BUSINESS_NOT_EXIST);
 					listErrors.add(responseErrorBO);
 				}
 			} else {
-				logger.severe("createBusiness - The user that create, not exist in db: "
+				logger.severe("addBusiness - The user that create, not exist in db: "
 						+ businessInputBO.getUserNameCreator());
 				ResponseErrorBO responseErrorBO = new ResponseErrorBO(ErrorConstant.SYSTEM_ERROR_5,
 						ErrorConstant.ERROR_KEY_USER_CREATOR_NOT_EXIST, ErrorConstant.MSG_KEY_USER_CREATOR_NOT_EXIST);
@@ -245,7 +245,7 @@ public class BusinessService {
 		baseResponseBO.setErrors(listErrors);
 		baseResponseBO.setSuccess(listErrors.size() > 0 ? Boolean.FALSE : Boolean.TRUE);
 		baseResponseBO.setTotalSize(listErrors.size() > 0 ? NumberConstant.NUMBER_0 : NumberConstant.NUMBER_1);
-		logger.info("createUser - Finish");
+		logger.info("addBusiness - Finish");
 		return new ResponseEntity<>(baseResponseBO, HttpStatus.OK);
 	}
 

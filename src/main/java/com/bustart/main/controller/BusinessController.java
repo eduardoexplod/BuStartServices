@@ -49,9 +49,9 @@ public class BusinessController {
 	 */
 	@SuppressWarnings("rawtypes")
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping(value = "/createBusiness", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<BaseResponseBO> createUser(@Valid @RequestBody BaseRequestBO<BusinessInputBO> request) {
-		return businessService.createBusiness(request.getBusinessRequest());
+	@PostMapping(value = "/addBusiness", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BaseResponseBO> addBusiness(@Valid @RequestBody BaseRequestBO<BusinessInputBO> request) {
+		return businessService.addBusiness(request.getBusinessRequest());
 	}
 	
 	/**
