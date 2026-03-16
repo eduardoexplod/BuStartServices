@@ -40,8 +40,8 @@ public class CustomerInputBO implements Serializable {
     @NotNull(message = ErrorConstant.ERROR_VAL_HAS_WHATSAPP_REQUIRED)
     private Boolean hasWhatsapp;
 
-    @NotNull(message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
-	@NotEmpty (message = ErrorConstant.ERROR_VAL_USERNAME_REQUIRED)
+    @NotNull(message = ErrorConstant.ERROR_VAL_USERNAME_CREATOR_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_USERNAME_CREATOR_REQUIRED)
 	private String userNameCreator;
 
     /**

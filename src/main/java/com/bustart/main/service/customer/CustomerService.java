@@ -69,9 +69,10 @@ public class CustomerService {
             logger.info("createCustomer - Search creator username ");
 			UserDO userDOCreator = null;
 			userDOCreator = generalService.getUserDO(customerInputBO.getUserNameCreator());
+            logger.info("createCustomer - llegue");
 			if (null != userDOCreator) {
                 // Map BO to DO (Data Object / Entity)
-                logger.info("createCustomer - The customer exist: " + optCustomerDO.get().getId());
+                logger.info("createCustomer - Save the customer in the DB ");
                 CustomerDO customerDO = new CustomerDO();
                 customerDO.setFirstName(customerInputBO.getFirstName());
                 customerDO.setLastName(customerInputBO.getLastName());
