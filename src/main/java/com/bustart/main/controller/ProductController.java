@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bustart.main.bo.BaseRequestBO;
 import com.bustart.main.bo.BaseResponseBO;
 import com.bustart.main.bo.ProductInputBO;
-import com.bustart.main.bo.SaleInputBO;
 import com.bustart.main.service.product.ProductService;
-import com.bustart.main.service.sale.SaleService;
 
 import jakarta.validation.Valid;
 
@@ -36,7 +34,7 @@ public class ProductController {
 	private ProductService productService;
 
 	/**
-	 * Method getBusinessByUser
+	 * Method addProduct
 	 * 
 	 * @method addProduct
 	 * @param productInputBO ProductInputBO

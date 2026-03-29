@@ -3,9 +3,16 @@ package com.bustart.main.bo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import com.bustart.main.constants.ErrorConstant;
+
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 /**
  * Business Object representing the input data for product creation and processing.
  * This class holds the core details required to register a product in the system.
+ * 
+ * @author Slam245
  * @version 1.0
  */
 public class ProductInputBO implements Serializable {
@@ -14,9 +21,11 @@ public class ProductInputBO implements Serializable {
 
     private String product;
     private String description;
-    private BigDecimal purchasePrice;
     private BigDecimal sellingPrice;
     private String category;
+    @NotNull(message = ErrorConstant.ERROR_VAL_USERNAME_CREATOR_REQUIRED)
+	@NotEmpty(message = ErrorConstant.ERROR_VAL_USERNAME_CREATOR_REQUIRED)
+	private String userNameCreator;
 
     /**
      * Default constructor.
@@ -55,20 +64,6 @@ public class ProductInputBO implements Serializable {
     }
 
     /**
-     * @return The cost incurred to acquire the product.
-     */
-    public BigDecimal getPurchasePrice() {
-        return purchasePrice;
-    }
-
-    /**
-     * @param purchasePrice The acquisition price to set.
-     */
-    public void setPurchasePrice(BigDecimal purchasePrice) {
-        this.purchasePrice = purchasePrice;
-    }
-
-    /**
      * @return The price at which the product is sold to customers.
      */
     public BigDecimal getSellingPrice() {
@@ -95,4 +90,17 @@ public class ProductInputBO implements Serializable {
     public void setCategory(String category) {
         this.category = category;
     }
+    /**
+	 * @return the userNameCreator
+	 */
+	public String getUserNameCreator() {
+		return userNameCreator;
+	}
+	/**
+	 * @param userNameCreator the userNameCreator to set
+	 */
+	public void setUserNameCreator(String userNameCreator) {
+		this.userNameCreator = userNameCreator;
+	}
+    
 }
