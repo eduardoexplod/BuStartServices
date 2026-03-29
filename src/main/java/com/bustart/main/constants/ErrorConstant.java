@@ -79,6 +79,13 @@ public class ErrorConstant {
 	/** The Constant MSG_KEY_CUSTOMER_EXIST. */
 	public static final String MSG_KEY_CUSTOMER_EXIST = "The customer exist in DB.";
 
+	/** The Constant ERROR_8. */
+	public static final Long SYSTEM_ERROR_8 = 8L;
+	/** The Constant ERROR_KEY_PRODUCT_EXIST. */
+	public static final String ERROR_KEY_PRODUCT_EXIST = "KEY_PRODUCT_EXIST";
+	/** The Constant MSG_KEY_PRODUCT_EXIST. */
+	public static final String MSG_KEY_PRODUCT_EXIST = "The product exist in DB.";
+
 	/** The Constant SYSTEM_ERROR_99999. */
 	public static final Long SYSTEM_ERROR_99999 = 99999L;
 	/** The Constant MSG_KEY_INPUT_ERROR. */

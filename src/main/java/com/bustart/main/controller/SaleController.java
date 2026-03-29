@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bustart.main.bo.BaseRequestBO;
 import com.bustart.main.bo.BaseResponseBO;
+import com.bustart.main.bo.SaleInputBO;
 import com.bustart.main.service.sale.SaleService;
 
 import jakarta.validation.Valid;
@@ -33,7 +34,7 @@ public class SaleController {
 	private SaleService saleService;
 
 	/**
-	 * Method getBusinessByUser
+	 * Method addSaleToCustomer
 	 * 
 	 * @method addSaleToCustomer
 	 * @param saleInputBO SaleInputBO
@@ -42,7 +43,7 @@ public class SaleController {
 	@SuppressWarnings("rawtypes")
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping(value = "/addSaleToCustomer", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<BaseResponseBO> addSaleToCustomer(@Valid @RequestBody BaseRequestBO<saleInputBO> request) {
+	public ResponseEntity<BaseResponseBO> addSaleToCustomer(@Valid @RequestBody BaseRequestBO<SaleInputBO> request) {
 		return saleService.addSaleToCustomer(request.getBusinessRequest());
 	}
 

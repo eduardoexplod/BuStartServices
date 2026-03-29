@@ -2,6 +2,7 @@ package com.bustart.main.bo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Business Object used to return product information to external clients.
@@ -18,6 +19,11 @@ public class ProductOutputBO implements Serializable {
     private BigDecimal purchasePrice;
     private BigDecimal sellingPrice;
     private String category;
+    private String userNameCreator;
+	private Date creationDate;
+	private String userNameLastModifier;
+	private Date lastModifiedDate; 
+	private Boolean statusCode;
 
     /**
      * Default constructor.
@@ -110,4 +116,64 @@ public class ProductOutputBO implements Serializable {
     public void setCategory(String category) {
         this.category = category;
     }
+    	/**
+	 * @return the userNameCreator
+	 */
+	public String getUserNameCreator() {
+		return userNameCreator;
+	}
+	/**
+	 * @param userNameCreator the userNameCreator to set
+	 */
+	public void setUserNameCreator(String userNameCreator) {
+		this.userNameCreator = userNameCreator;
+	}
+	/**
+	 * @return the creationDate
+	 */
+	public Date getCreationDate() {
+		return creationDate;
+	}
+	/**
+	 * @param creationDate the creationDate to set
+	 */
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+	/**
+	 * @return the userNameLastModifier
+	 */
+	public String getUserNameLastModifier() {
+		return userNameLastModifier;
+	}
+	/**
+	 * @param userNameLastModifier the userNameLastModifier to set
+	 */
+	public void setUserNameLastModifier(String userNameLastModifier) {
+		this.userNameLastModifier = userNameLastModifier;
+	}
+	/**
+	 * @return the lastModifiedDate
+	 */
+	public Date getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+	/**
+	 * @param lastModifiedDate the lastModifiedDate to set
+	 */
+	public void setLastModifiedDate(Date lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
+	/**
+	 * @return the statusCode
+	 */
+	public Boolean getStatusCode() {
+		return statusCode;
+	}
+	/**
+	 * @param statusCode the statusCode to set
+	 */
+	public void setStatusCode(Boolean statusCode) {
+		this.statusCode = statusCode;
+	}
 }

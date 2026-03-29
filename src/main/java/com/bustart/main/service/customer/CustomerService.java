@@ -42,7 +42,7 @@ public class CustomerService {
     Logger logger = Logger.getLogger(BusinessService.class.getName());
 
     /**
-     * Creates a new customer in the system.
+     * Add a new customer in the system.
      * Validates if the phone number already exists to prevent duplicates.
      * * @param customerInputBO The business object containing customer information.
      * 
@@ -51,28 +51,27 @@ public class CustomerService {
      */
     @SuppressWarnings("rawtypes")
     @Transactional
-    public ResponseEntity<BaseResponseBO> createCustomer(CustomerInputBO customerInputBO) {
+    public ResponseEntity<BaseResponseBO> addCustomer(CustomerInputBO customerInputBO) {
         logger.info("CustomerService - Method createCustomer");
         BaseResponseBO<CustomerOutputBO> baseResponseBO = new BaseResponseBO<CustomerOutputBO>();
         List<ResponseErrorBO> listErrors = new ArrayList<ResponseErrorBO>();
         CustomerOutputBO customerOutputBO = null;
         logger.info(
-                "createCustomer: Search the customer by phoneNumber - " + customerInputBO.getPhoneNumber());
+                "addCustomer: Search the customer by phoneNumber - " + customerInputBO.getPhoneNumber());
         Optional<CustomerDO> optCustomerDO = null;
         optCustomerDO = customerRepository.findByPhoneNumber(customerInputBO.getPhoneNumber());
         if (optCustomerDO.isPresent()) {
-            logger.severe("createCustomer - The customer exist: " + optCustomerDO.get().getId());
-            ResponseErrorBO responseErrorBO = new ResponseErrorBO(ErrorConstant.SYSTEM_ERROR_1,
+            logger.severe("addCustomer - The customer exist: " + optCustomerDO.get().getId());
+            ResponseErrorBO responseErrorBO = new ResponseErrorBO(ErrorConstant.SYSTEM_ERROR_7,
                     ErrorConstant.ERROR_KEY_CUSTOMER_EXIST, ErrorConstant.MSG_KEY_CUSTOMER_EXIST);
             listErrors.add(responseErrorBO);
         } else {
-            logger.info("createCustomer - Search creator username ");
+            logger.info("addCustomer - Search creator username ");
 			UserDO userDOCreator = null;
 			userDOCreator = generalService.getUserDO(customerInputBO.getUserNameCreator());
-            logger.info("createCustomer - llegue");
 			if (null != userDOCreator) {
                 // Map BO to DO (Data Object / Entity)
-                logger.info("createCustomer - Save the customer in the DB ");
+                logger.info("addCustomer - Save the customer in the DB ");
                 CustomerDO customerDO = new CustomerDO();
                 customerDO.setFirstName(customerInputBO.getFirstName());
                 customerDO.setLastName(customerInputBO.getLastName());
@@ -89,12 +88,12 @@ public class CustomerService {
                 // Persist 
                 customerRepository.save(customerDO);
                 customerRepository.flush();
-                logger.info("createCustomer - New customer created");
+                logger.info("addCustomer - New customer created");
                 CustomerDO newCustomerDO = null;
                 newCustomerDO = generalService.getCustomerDO(customerInputBO.getPhoneNumber());
                 customerOutputBO = fillCustomerOutputBO(newCustomerDO);
 			} else {
-				logger.severe("createCustomer - The user that create, not exist in db: "
+				logger.severe("addCustomer - The user that create, not exist in db: "
 						+ customerInputBO.getUserNameCreator());
 				ResponseErrorBO responseErrorBO = new ResponseErrorBO(ErrorConstant.SYSTEM_ERROR_5,
 						ErrorConstant.ERROR_KEY_USER_CREATOR_NOT_EXIST, ErrorConstant.MSG_KEY_USER_CREATOR_NOT_EXIST);
@@ -105,7 +104,7 @@ public class CustomerService {
         baseResponseBO.setErrors(listErrors);
         baseResponseBO.setSuccess(listErrors.size() > 0 ? Boolean.FALSE : Boolean.TRUE);
         baseResponseBO.setTotalSize(listErrors.size() > 0 ? NumberConstant.NUMBER_0 : NumberConstant.NUMBER_1);
-        logger.info("createCustomer - Finish");
+        logger.info("addCustomer - Finish");
         return new ResponseEntity<>(baseResponseBO, HttpStatus.OK);
     }
 
