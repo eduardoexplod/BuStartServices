@@ -12,9 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bustart.main.model.BusinessDO;
 import com.bustart.main.model.CustomerDO;
+import com.bustart.main.model.ProductDO;
 import com.bustart.main.model.UserDO;
 import com.bustart.main.repository.BusinessRepository;
 import com.bustart.main.repository.CustomerRepository;
+import com.bustart.main.repository.ProductRepository;
 import com.bustart.main.repository.UserRepository;
 
 /**
@@ -33,6 +35,9 @@ public class GeneralService {
 
 	@Autowired
 	private CustomerRepository customerRepository;
+
+	@Autowired
+    private ProductRepository productRepository;
 	
 	/**
 	 * Implement Logger
@@ -103,5 +108,26 @@ public class GeneralService {
 			}
 		}
 		return customerDO;
+	}
+	/**
+	 * @author Slam245
+	 * @method getProductDO
+	 * @param product String
+	 * @return ProductDO
+	 *
+	 */
+	public ProductDO getProductDO(String product) {
+		logger.info("GeneralService - Get productDO: " + product);
+		ProductDO productDO = null;
+		if (null != product) {
+			Optional<ProductDO> optProductDO = null;
+			optProductDO = productRepository.findByProduct(product);
+			logger.info(optProductDO.toString());
+			if (optProductDO.isPresent()) {
+				productDO = optProductDO.get();
+				logger.info("getProductDO - productDO exist: " + productDO.getId());
+			}
+		}
+		return productDO;
 	}
 }

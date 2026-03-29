@@ -35,17 +35,17 @@ public class CustomerController{
 	private CustomerService customerService;
 
 	/**
-	 * Method getBusinessByUser
+	 * Method addCustomer
 	 * 
-	 * @method createUser
-	 * @param userInputBO UserInputBO
+	 * @method addCustomer
+	 * @param customerInputBO CustomerInputBO
 	 * @return ResponseEntity<BaseResponseBO>
 	 */
 	@SuppressWarnings("rawtypes")
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping(value = "/createCustomer", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<BaseResponseBO> createCustomer(@Valid @RequestBody BaseRequestBO<CustomerInputBO> request) {
-		return customerService.createCustomer(request.getBusinessRequest());
+	@PostMapping(value = "/addCustomer", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BaseResponseBO> addCustomer(@Valid @RequestBody BaseRequestBO<CustomerInputBO> request) {
+		return customerService.addCustomer(request.getBusinessRequest());
 	}
 
 }

@@ -22,6 +22,7 @@ public class BusinessOutputBO {
 	private String userNameLastModifier;
 	private Date lastModifiedDate; 
 	private Boolean statusCode;
+	
 	/**
 	 * @return the businessId
 	 */
