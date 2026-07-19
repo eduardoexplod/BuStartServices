@@ -41,6 +41,9 @@ public class SaleService {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+	private GeneralService generalService;
+
     /**
      * Implement Logger
      */
@@ -64,9 +67,21 @@ public class SaleService {
         SaleOutputBO saleOutputBO = null;
         logger.info(
                 "addSaleToCustomer: Validate input object- " + saleInputBO.toString());
-
-
-       
+        
+        
+        
+		logger.info("addSaleToCustomer - Search creator username ");
+		UserDO userDOCreator = null;
+		userDOCreator = generalService.getUserDO(saleInputBO.getUserNameCreator());
+		if (null != userDOCreator) {
+            listErrors = validateSaleInput(saleInputBO);
+		} else {
+			logger.severe(
+					"addBusinessToUser - The user that create, not exist in db: " + saleInputBO.getUserNameCreator());
+			ResponseErrorBO responseErrorBO = new ResponseErrorBO(ErrorConstant.SYSTEM_ERROR_5,
+					ErrorConstant.ERROR_KEY_USER_CREATOR_NOT_EXIST, ErrorConstant.MSG_KEY_USER_CREATOR_NOT_EXIST);
+			listErrors.add(responseErrorBO);
+		}       
         baseResponseBO.setData(listErrors.size() > 0 ? null : saleOutputBO);
         baseResponseBO.setErrors(listErrors);
         baseResponseBO.setSuccess(listErrors.size() > 0 ? Boolean.FALSE : Boolean.TRUE);

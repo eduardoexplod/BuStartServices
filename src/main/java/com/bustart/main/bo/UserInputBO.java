@@ -51,8 +51,6 @@ public class UserInputBO {
 	@NotNull(message = ErrorConstant.ERROR_VAL_HAS_WHATSAPP_REQUIRED)
 	private boolean hasWhatsApp;
 	
-	@NotNull(message = ErrorConstant.ERROR_VAL_USERNAME_CREATOR_REQUIRED)
-	@NotEmpty (message = ErrorConstant.ERROR_VAL_USERNAME_CREATOR_REQUIRED)
 	private String userNameCreator;
 		
 	/**

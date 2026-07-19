@@ -19,9 +19,18 @@ public class SaleInputBO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @NotNull(message = ErrorConstant.ERROR_VAL_BUSINESS_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_BUSINESS_REQUIRED)	
     private Long businessId;
+
+    @NotNull(message = ErrorConstant.ERROR_VAL_CUSTOMER_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_CUSTOMER_REQUIRED)	
     private Long customerId;
-    private List<SaleItemBO> items;
+
+    @NotNull(message = ErrorConstant.ERROR_VAL_SALE_ITEMS_REQUIRED)
+	@NotEmpty (message = ErrorConstant.ERROR_VAL_SALE_ITEMS_REQUIRED)	
+    private List<SaleItemBO> saleItems;
+
 	@NotNull(message = ErrorConstant.ERROR_VAL_USERNAME_CREATOR_REQUIRED)
 	@NotEmpty (message = ErrorConstant.ERROR_VAL_USERNAME_CREATOR_REQUIRED)
 	private String userNameCreator;
@@ -65,15 +74,15 @@ public class SaleInputBO implements Serializable {
     /**
      * @return The list of individual products and quantities in this sale.
      */
-    public List<SaleItemBO> getItems() {
-        return items;
+    public List<SaleItemBO> getSaleItems() {
+        return saleItems;
     }
 
     /**
      * @param items The list of sale items to set.
      */
-    public void setItems(List<SaleItemBO> items) {
-        this.items = items;
+    public void setSaleItems(List<SaleItemBO> saleItems) {
+        this.saleItems = saleItems;
     }
 	/**
 	 * @return the userNameCreator

@@ -1,7 +1,6 @@
 package com.bustart.main.bo;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * Business Object representing a single item within a sale transaction.
@@ -16,7 +15,6 @@ public class SaleItemBO implements Serializable {
 
     private Long productId;
     private Integer quantity;
-    private BigDecimal subtotal;
 
     /**
      * Default constructor.
@@ -52,19 +50,5 @@ public class SaleItemBO implements Serializable {
      */
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-
-    /**
-     * @return The calculated subtotal (quantity * price) for this item.
-     */
-    public BigDecimal getSubtotal() {
-        return subtotal;
-    }
-
-    /**
-     * @param subtotal The monetary subtotal to set for this specific sale item.
-     */
-    public void setSubtotal(BigDecimal subtotal) {
-        this.subtotal = subtotal;
     }
 }
