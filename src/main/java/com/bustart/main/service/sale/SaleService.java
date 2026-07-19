@@ -17,10 +17,14 @@ import com.bustart.main.bo.CustomerInputBO;
 import com.bustart.main.bo.CustomerOutputBO;
 import com.bustart.main.bo.ResponseErrorBO;
 import com.bustart.main.bo.SaleInputBO;
+import com.bustart.main.bo.SaleOutputBO;
 import com.bustart.main.constants.ErrorConstant;
 import com.bustart.main.constants.NumberConstant;
+import com.bustart.main.model.BusinessDO;
 import com.bustart.main.model.CustomerDO;
+import com.bustart.main.model.ProductDO;
 import com.bustart.main.model.UserDO;
+import com.bustart.main.repository.BusinessRepository;
 import com.bustart.main.repository.CustomerRepository;
 import com.bustart.main.service.business.BusinessService;
 import com.bustart.main.service.general.GeneralService;
@@ -31,7 +35,11 @@ import com.bustart.main.service.general.GeneralService;
 @Service
 public class SaleService {
 
+    @Autowired
+    private BusinessRepository businessRepository;
 
+    @Autowired
+    private CustomerRepository customerRepository;
 
     /**
      * Implement Logger
@@ -54,6 +62,9 @@ public class SaleService {
         BaseResponseBO<SaleOutputBO> baseResponseBO = new BaseResponseBO<SaleOutputBO>();
         List<ResponseErrorBO> listErrors = new ArrayList<ResponseErrorBO>();
         SaleOutputBO saleOutputBO = null;
+        logger.info(
+                "addSaleToCustomer: Validate input object- " + saleInputBO.toString());
+
 
        
         baseResponseBO.setData(listErrors.size() > 0 ? null : saleOutputBO);
@@ -63,5 +74,40 @@ public class SaleService {
         logger.info("addSaleToCustomer - Finish");
         return new ResponseEntity<>(baseResponseBO, HttpStatus.OK);
     }
+
+    /**
+	 * @author Slam245
+	 * @method validateSaleInput
+	 * @param saleInputBO SaleInputBO
+	 * @return List<ResponseErrorBO>
+	 *
+	 */
+	public List<ResponseErrorBO> validateSaleInput(SaleInputBO saleInputBO) {
+		logger.info("validateSaleInput - Start the process of input validation.");
+        List<ResponseErrorBO> listErrors = null;
+		if (null != saleInputBO) {
+            listErrors = new ArrayList<ResponseErrorBO>();
+            Optional<BusinessDO> optBusinessDO = null;
+            optBusinessDO = businessRepository.findById(saleInputBO.getBusinessId());
+            if (optBusinessDO.isPresent()) {
+                Optional<CustomerDO> optCustomerDO = null;
+                optCustomerDO = customerRepository.findById(saleInputBO.getCustomerId());
+                if (optCustomerDO.isPresent()) {
+
+                } else {
+                    logger.severe("addCustomer - The customer exist: " + optCustomerDO.get().getId());
+                    ResponseErrorBO responseErrorBO = new ResponseErrorBO(ErrorConstant.SYSTEM_ERROR_7,
+                            ErrorConstant.ERROR_KEY_CUSTOMER_EXIST, ErrorConstant.MSG_KEY_CUSTOMER_EXIST);
+                    listErrors.add(responseErrorBO);
+                }
+            } else {
+                logger.severe("validateSaleInput - The business not exist: " + saleInputBO.getBusinessId());
+                ResponseErrorBO responseErrorBO = new ResponseErrorBO(ErrorConstant.SYSTEM_ERROR_4,
+                        ErrorConstant.ERROR_KEY_BUSINESS_NOT_EXIST, ErrorConstant.MSG_KEY_BUSINESS_NOT_EXIST);
+                listErrors.add(responseErrorBO);
+            }
+		}
+		return listErrors;
+	}
 
 }
