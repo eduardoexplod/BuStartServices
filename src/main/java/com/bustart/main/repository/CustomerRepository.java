@@ -1,4 +1,5 @@
 package com.bustart.main.repository;
+import com.bustart.main.model.BusinessDO;
 import com.bustart.main.model.CustomerDO;
 
 
@@ -15,4 +16,7 @@ public interface CustomerRepository extends JpaRepository<CustomerDO, Long> {
      * @return An Optional containing the customer if found.
      */
     Optional<CustomerDO> findByPhoneNumber(String phoneNumber);
+
+    Optional<CustomerDO> findById(Long id);
+    
 }

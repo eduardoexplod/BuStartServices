@@ -43,6 +43,7 @@ public class SecurityConfig {
                 // 2. Configurar permisos
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/v1/api/auth/**").permitAll()
+                        .requestMatchers("/v1/api/user/**").permitAll()
                         .requestMatchers("/error").permitAll() // IMPORTANTE: Permitir errores
                         .anyRequest().authenticated())
 
