@@ -118,7 +118,7 @@ public class ErrorConstant {
 	/** The Constant ERROR_KEY_QUANTITY_IS_NULL_OR_ZERO. */
 	public static final String ERROR_KEY_QUANTITY_IS_NULL_OR_ZERO = "KEY_QUANTITY_IS_NULL_OR_ZERO";
 	/** The Constant MSG_KEY_QUANTITY_IS_NULL_OR_ZERO. */
-	public static final String MSG_KEY_QUANTITY_IS_NULL_OR_ZERO = "The quantity cannot be null or 0 in the sale.";
+	public static final String MSG_KEY_QUANTITY_IS_NULL_OR_ZERO = "The quantity cannot be null, 0 or < 0 in the sale.";
 
 	/** The Constant SYSTEM_ERROR_99999. */
 	public static final Long SYSTEM_ERROR_99999 = 99999L;
