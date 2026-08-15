@@ -76,7 +76,6 @@ public class SaleService {
 
         if (null == listErrors || listErrors.isEmpty()) {
             listErrors = new ArrayList<ResponseErrorBO>();
-            // este es un cambio
         }
         baseResponseBO.setData(listErrors.size() > 0 ? null : saleOutputBO);
         baseResponseBO.setErrors(listErrors);
